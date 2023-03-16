@@ -27,7 +27,11 @@ class _ProfileState extends State<Profile> {
   Color light = Colors.brown.shade500;
   Color dark = Colors.black;
   Color c1 = Colors.brown.shade500;
-  RangeValues rangeValues = RangeValues(10000, 250000);
+  RangeValues rangeValues = RangeValues(25000, 250000);
+  String country = "Indian";
+// List country = ["Indian","American"];
+  //,"USA","Israil","UAE","China"];
+  String? countrySel;
 
 
   @override
@@ -169,6 +173,33 @@ class _ProfileState extends State<Profile> {
                           )),
                     ),
                   ),
+                  ExpansionTile(
+                      leading: Icon(Icons.location_history,size: 25,color: Colors.white),
+                      title: Text("Nationality",style: TextStyle(color: Colors.white,fontSize: 25)),
+                  children: [
+                    RadioListTile(value: "Indian", groupValue: country, onChanged: (value) {
+                      setState(() {
+                        country = value!;
+                      });},
+                    title: Text("Indian"),),
+                    RadioListTile(value: "American", groupValue: country, onChanged: (value) {
+                      setState(() {
+                        country = value!;
+                      });},
+                    title: Text("American"),),
+                    RadioListTile(value: "Korean", groupValue: country, onChanged: (value) {
+                      setState(() {
+                        country = value!;
+                      });},
+                    title: Text("Korean"),),
+                    RadioListTile(value: "Swiss", groupValue: country, onChanged: (value) {
+                      setState(() {
+                        country = value!;
+                      });},
+                    title: Text("Swiss"),),
+
+
+                  ],)
                 ],
               ),
 
@@ -441,8 +472,10 @@ class _ProfileState extends State<Profile> {
                 setState(() {
                   rangeValues = value;
                 });
-              },min: 0,max: 500000,divisions: 50,
+              },min: 10000,max: 300000,divisions: 29,
                 labels: RangeLabels("${rangeValues.start.round()}", "${rangeValues.end.round()}"),
+                activeColor: Colors.white,
+                //inactiveColor: Colors.white,
               ),
 
               SizedBox(height: 20),
