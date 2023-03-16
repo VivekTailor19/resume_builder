@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -26,6 +27,7 @@ class _ProfileState extends State<Profile> {
   Color light = Colors.brown.shade500;
   Color dark = Colors.black;
   Color c1 = Colors.brown.shade500;
+  RangeValues rangeValues = RangeValues(10000, 250000);
 
 
   @override
@@ -171,6 +173,7 @@ class _ProfileState extends State<Profile> {
               ),
 
               SizedBox(height: 20),
+
               ListTile(
                 leading:
                 Icon(Icons.school_outlined, size: 30, color: Colors.white),
@@ -204,6 +207,7 @@ class _ProfileState extends State<Profile> {
                     style: TextStyle(fontSize: 20, color: Colors.white),),
                 ),
               ),
+
               SizedBox(height: 20),
               ExpansionTile(
                 leading:
@@ -303,6 +307,7 @@ class _ProfileState extends State<Profile> {
               ),
 
               SizedBox(height: 20),
+
               ListTile(
                   leading:
                   Icon(Icons.workspace_premium_outlined, size: 30,
@@ -422,6 +427,24 @@ class _ProfileState extends State<Profile> {
                       style: TextStyle(fontSize: 20, color: Colors.white),),),
                 ],
               ),
+
+              SizedBox(height: 20),
+
+              ExpansionTile(
+                  leading: Text("₹",style: TextStyle(fontSize: 30,color: Colors.white)),
+                  title: Text(
+                    "Expected Salary",
+                    style: TextStyle(fontSize: 30, color: Colors.white),
+                  ),
+              ),
+              RangeSlider(values: rangeValues, onChanged: (value){
+                setState(() {
+                  rangeValues = value;
+                });
+              },min: 0,max: 500000,divisions: 50,
+                labels: RangeLabels("${rangeValues.start.round()}", "${rangeValues.end.round()}"),
+              ),
+
               SizedBox(height: 20),
 
               ElevatedButton(
@@ -429,13 +452,13 @@ class _ProfileState extends State<Profile> {
                   showDialog(context: context, builder: (context) {
                     return AlertDialog(title: Text("Are you wanted to Quit the Application"),
                       content: Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly,children: [
-                        ElevatedButton(onPressed: () {setState(() {
-                          Navigator.pushNamed(context, "/");
-                        });},
+                        ElevatedButton(onPressed: () {
+                          SystemNavigator.pop();
+                       },
                           child: Text("Yes"), style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.green),),
                         ElevatedButton(onPressed: () {setState(() {
-                          //Navigator.pushNamed(context, "profile");
+                          Navigator.pushReplacementNamed(context, "/");
                         });},
                           child: Text("No"), style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.redAccent),),
@@ -446,7 +469,7 @@ class _ProfileState extends State<Profile> {
                 child: Text("Submit",
                     style: TextStyle(fontSize: 20, color: Colors.blueGrey)),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,),)
+                  backgroundColor: Colors.white,),),
 
             ],
           ),
