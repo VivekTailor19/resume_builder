@@ -19,15 +19,37 @@ class _ProfileState extends State<Profile> {
   ];
   List techselect = [false, false, false, false, false];
   bool project = false;
+  bool mode = false;
   String? eduSel;
+
+  bool demo = false;
+  Color light = Colors.brown.shade500;
+  Color dark = Colors.black;
+  Color c1=Colors.black;
+
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: c1,
         appBar: AppBar(
-          backgroundColor: Colors.black,
+          backgroundColor: c1,
+          leading: Switch(value: mode, onChanged: (value) {
+            setState(() {
+              mode = value;
+              if( mode == false )
+              {
+                c1 = light;
+              }
+              else
+              {
+                c1 = dark;
+              }
+
+            });
+          }, activeColor: Colors.white,),
+
           title: Text(
             "Profile",
             style: TextStyle(color: Colors.white, fontSize: 25),
@@ -72,7 +94,7 @@ class _ProfileState extends State<Profile> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: 8, right: 8.0, top: 15),
-                    child: TextField(
+                    child: TextField(textInputAction: TextInputAction.next,
                       style: TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                           focusedBorder: OutlineInputBorder(
@@ -191,67 +213,93 @@ class _ProfileState extends State<Profile> {
                   "Technical Skills",
                   style: TextStyle(fontSize: 30, color: Colors.white),
                 ),
-                trailing: Icon(
-                  Icons.check_box_outlined,
-                  size: 30,
-                  color: Colors.white,
+                trailing:
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      if(demo==false)
+                        {
+                          demo=true;
+                        }
+                      else
+                        {
+                          demo=false;
+                        }
+                    });
+                  },
+                  child: demo==false?Icon(
+                    Icons.arrow_drop_down,
+                    size: 30,
+                    color: Colors.white,
+                  ):Icon(
+                    Icons.arrow_drop_up,
+                    size: 30,
+                    color: Colors.white,
+                  ),
                 ),
                 children: [
-                  CheckboxListTile(value: techselect[0],
-                    onChanged: (value) {
-                      setState(() {
-                        techselect[0] = value;
-                      });
-                    },
-                    checkColor: Colors.white,
-                    activeColor: Colors.white,
-                    title: Text("${techSkill[0]}",
-                      style: TextStyle(fontSize: 20, color: Colors.white),),),
-                  CheckboxListTile(value: techselect[1],
-                    onChanged: (value) {
-                      setState(() {
-                        techselect[1] = value;
-                      });
-                    },
-                    checkColor: Colors.black,
-                    activeColor: Colors.white,
-                    title: Text("${techSkill[1]}",
-                      style: TextStyle(fontSize: 20, color: Colors.white),),),
-                  CheckboxListTile(value: techselect[2],
-                    onChanged: (value) {
-                      setState(() {
-                        techselect[2] = value;
-                      });
-                    },
-                    checkColor: Colors.black,
-                    activeColor: Colors.white,
-                    title: Text("${techSkill[2]}",
-                      style: TextStyle(fontSize: 20, color: Colors.white),),),
-                  CheckboxListTile(value: techselect[3],
-                    onChanged: (value) {
-                      setState(() {
-                        techselect[3] = value;
-                      });
-                    },
-                    side: MaterialStateBorderSide.resolveWith((states) {
-                      return BorderSide(color: Colors.white);
-                    }),
+                 Visibility(
+                   visible: demo,
+                   child: Column(
+                     children: [
+                       CheckboxListTile(value: techselect[0],
+                         onChanged: (value) {
+                           setState(() {
+                             techselect[0] = value;
+                           });
+                         },
+                         checkColor: Colors.white,
+                         activeColor: Colors.white,
+                         title: Text("${techSkill[0]}",
+                           style: TextStyle(fontSize: 20, color: Colors.white),),),
+                       CheckboxListTile(value: techselect[1],
+                         onChanged: (value) {
+                           setState(() {
+                             techselect[1] = value;
+                           });
+                         },
+                         checkColor: Colors.black,
+                         activeColor: Colors.white,
+                         title: Text("${techSkill[1]}",
+                           style: TextStyle(fontSize: 20, color: Colors.white),),),
+                       CheckboxListTile(value: techselect[2],
+                         onChanged: (value) {
+                           setState(() {
+                             techselect[2] = value;
+                           });
+                         },
+                         checkColor: Colors.black,
+                         activeColor: Colors.white,
+                         title: Text("${techSkill[2]}",
+                           style: TextStyle(fontSize: 20, color: Colors.white),),),
+                       CheckboxListTile(value: techselect[3],
+                         onChanged: (value) {
+                           setState(() {
+                             techselect[3] = value;
+                           });
+                         },
+                         side: MaterialStateBorderSide.resolveWith((states) {
+                           return BorderSide(color: Colors.white);
+                         }),
 
 
-                    activeColor: Colors.blueGrey,
-                    checkColor: Colors.white,
-                    title: Text("${techSkill[3]}",
-                      style: TextStyle(fontSize: 20, color: Colors.white),),),
-                  CheckboxListTile(value: techselect[4],
-                    onChanged: (value) {
-                      setState(() {
-                        techselect[4] = value;
-                      });
-                    },
-                    checkColor: Colors.black,
-                    activeColor: Colors.white,
-                    title: Text("${techSkill[4]}",
-                      style: TextStyle(fontSize: 20, color: Colors.white),),),
+                         activeColor: Colors.blueGrey,
+                         checkColor: Colors.white,
+                         title: Text("${techSkill[3]}",
+                           style: TextStyle(fontSize: 20, color: Colors.white),),),
+                       CheckboxListTile(value: techselect[4],
+                         onChanged: (value) {
+                           setState(() {
+                             techselect[4] = value;
+                           });
+                         },
+                         checkColor: Colors.black,
+                         activeColor: Colors.white,
+                         title: Text("${techSkill[4]}",
+                           style: TextStyle(fontSize: 20, color: Colors.white),),),
+                     ],
+                   ),
+                 )
                 ],
               ),
 
@@ -319,11 +367,7 @@ class _ProfileState extends State<Profile> {
                   "Soft Skills",
                   style: TextStyle(fontSize: 30, color: Colors.white),
                 ),
-                trailing: Icon(
-                  Icons.check_box_outlined,
-                  size: 30,
-                  color: Colors.white,
-                ),
+
                 children: [
                   CheckboxListTile(value: techselect[0],
                     onChanged: (value) {
