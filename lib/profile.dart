@@ -181,22 +181,22 @@ class _ProfileState extends State<Profile> {
                       setState(() {
                         country = value!;
                       });},
-                    title: Text("Indian"),),
+                    title: Text("Indian",style: TextStyle(fontSize: 15,color: Colors.white)),activeColor: Colors.white),
                     RadioListTile(value: "American", groupValue: country, onChanged: (value) {
                       setState(() {
                         country = value!;
                       });},
-                    title: Text("American"),),
+                    title: Text("American",style: TextStyle(fontSize: 15,color: Colors.white),),activeColor: Colors.white),
                     RadioListTile(value: "Korean", groupValue: country, onChanged: (value) {
                       setState(() {
                         country = value!;
                       });},
-                    title: Text("Korean"),),
+                    title: Text("Korean",style: TextStyle(fontSize: 15,color: Colors.white)),activeColor: Colors.white),
                     RadioListTile(value: "Swiss", groupValue: country, onChanged: (value) {
                       setState(() {
                         country = value!;
                       });},
-                    title: Text("Swiss"),),
+                    title: Text("Swiss",style: TextStyle(fontSize: 15,color: Colors.white)),activeColor: Colors.white),
 
 
                   ],)
