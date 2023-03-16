@@ -25,7 +25,7 @@ class _ProfileState extends State<Profile> {
   bool demo = false;
   Color light = Colors.brown.shade500;
   Color dark = Colors.black;
-  Color c1=Colors.black;
+  Color c1 = Colors.brown.shade500;
 
 
   @override
@@ -46,7 +46,6 @@ class _ProfileState extends State<Profile> {
               {
                 c1 = dark;
               }
-
             });
           }, activeColor: Colors.white,),
 
