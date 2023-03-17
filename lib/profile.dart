@@ -10,6 +10,11 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
 
+  TextEditingController user_name = TextEditingController();
+  TextEditingController user_address = TextEditingController();
+  TextEditingController user_email = TextEditingController();
+  TextEditingController user_contact = TextEditingController();
+
   List edu = ["B.E.", "M.B.B.S", "Ph.D", "SSC", "HSC", "B.Sc"];
   List techSkill = [
     "Basic Programming",
@@ -101,10 +106,10 @@ class _ProfileState extends State<Profile> {
                     color: Colors.white,
                   ),
                   children: [
-                    Personal("Enter Full Name"),
-                    Personal("Enter Address"),
-                    Personal("Enter Email Id"),
-                    Personal("Enter Contact No"),
+                    Personal("Enter Full Name",user_name),
+                    Personal("Enter Address",user_address),
+                    Personal("Enter Email Id",user_email),
+                    Personal("Enter Contact No",user_contact),
                     Padding(
                       padding: EdgeInsets.only(left: 8, right: 8.0, top: 15),
                       child: Container(color: Colors.white,
@@ -320,13 +325,13 @@ class _ProfileState extends State<Profile> {
                 ElevatedButton(
                   onPressed: () {
                     showExitDialog();
-
-
                   },
                   child: Text("Submit",
                       style: TextStyle(fontSize: 20, color: Colors.blueGrey)),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,),),
+
+
 
               ],
             ),
@@ -336,11 +341,13 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  Widget Personal(String labelname)
+  Widget Personal(String labelname, TextEditingController data)
   {
     return Padding(
       padding: EdgeInsets.only(left: 8, right: 8.0, top: 15),
-      child: TextField(textInputAction: TextInputAction.next,
+      child: TextField(
+        controller: data,
+        textInputAction: TextInputAction.next,
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
@@ -386,6 +393,7 @@ class _ProfileState extends State<Profile> {
     return RadioListTile(value: "$country_name", groupValue: country, onChanged: (value) {
         setState(() {
           country = value!;
+          print(country);
         });},
           title: Text("$country_name",style: TextStyle(fontSize: 15,),),activeColor: Colors.green);
 
@@ -429,6 +437,12 @@ class _ProfileState extends State<Profile> {
            },
             child: Text("No"), style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.redAccent),),
+
+            ElevatedButton(onPressed: () {
+              //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("")));
+            },
+              child: Text("SnackBar View",style: TextStyle(fontSize: 15),), style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.amber),),
         ],),);
     },);
   }
