@@ -415,7 +415,9 @@ class _ProfileState extends State<Profile> {
       barrierDismissible: false,
       context: context, builder: (context) {
       return AlertDialog(title: Text("Are you wanted to Quit the Application"),
-        content: Row( mainAxisAlignment: MainAxisAlignment.spaceEvenly,children: [
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
           ElevatedButton(onPressed: () {
             SystemNavigator.pop();
             //exit(0);
