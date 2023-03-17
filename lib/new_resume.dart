@@ -15,9 +15,10 @@ class _New_ResumeState extends State<New_Resume> {
   String country = "Indian";
   String? countrySel;
 
+  String stream = "";
   List edu = ["B.E.","M.B.B.S","Ph.D","SSC","HSC","B.Sc"];
-  String? eduSel;
-  TextEditingController stream = TextEditingController();
+  String eduSel = "B.E.";
+
 
   String exp = "Experience";
   String? expSel;
@@ -30,171 +31,205 @@ class _New_ResumeState extends State<New_Resume> {
 
   TextEditingController objective = TextEditingController();
 
+  bool project = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 60,
+              decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.lightBlueAccent,Colors.blue,Colors.blueAccent])),
+              alignment: Alignment.center,
+              child: Text("Profile",style: TextStyle(fontSize: 25,color: Colors.white),),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: ExpansionTile(
+                leading: Icon(Icons.person_outline, size: 30, color: Colors.lightBlue),
+                title: Text("Personal Information", style: TextStyle(fontSize: 30,),),
+                trailing: Text(""),
 
-      body: Column(
-        children: [
-          Container(
-            height: 60,
-            decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.lightBlueAccent,Colors.blue,Colors.blueAccent])),
-            alignment: Alignment.center,
-            child: Text("Profile",style: TextStyle(fontSize: 25,color: Colors.white),),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: ExpansionTile(
-              leading: Icon(Icons.person_outline, size: 30, color: Colors.lightBlue),
-              title: Text("Personal Information", style: TextStyle(fontSize: 30,),),
-
-              children: [
-                PersonalDetails(title: "Name", hintname: "Your Full Name"),
-                PersonalDetails(title: "Address", hintname: "Main Road, Surat"),
-                PersonalDetails(title: "Email", hintname: "myresume@gmail.com"),
-                PersonalDetails(title: "Contact", hintname: "998877123"),
-                Padding(
-                  padding: EdgeInsets.only(left: 8, right: 8.0, top: 5),
-                  child: Container(color: Colors.white,
-                    child:ExpansionTile(
-                      leading: Icon(Icons.public,size: 30,color: Colors.lightBlue),
-                      title: Text("Nationality",style: TextStyle(fontSize: 30 )),
-                      trailing: Text("$country",style: TextStyle(fontSize: 20)),
-                      children: [
-                        NationalityRadio("Indian"),
-                        NationalityRadio("American"),
-                        NationalityRadio("Chinese"),
-                        NationalityRadio("Swiss"),
-                        NationalityRadio("Japanese"),
-                        NationalityRadio("Korean"),
-                        NationalityRadio("English"),
-                      ],),
+                children: [
+                  PersonalDetails(title: "Name", hintname: "Your Full Name"),
+                  PersonalDetails(title: "Address", hintname: "Main Road, Surat"),
+                  PersonalDetails(title: "Email", hintname: "myresume@gmail.com"),
+                  PersonalDetails(title: "Contact", hintname: "998877123"),
+                  Padding(
+                    padding: EdgeInsets.only(left: 8, right: 8.0, top: 5),
+                    child: Container(color: Colors.white,
+                      child:ExpansionTile(
+                        leading: Icon(Icons.public,size: 30,color: Colors.lightBlue),
+                        title: Text("Nationality",style: TextStyle(fontSize: 30 )),
+                        trailing: Text("$country",style: TextStyle(fontSize: 20)),
+                        children: [
+                          NationalityRadio("Indian"),
+                          NationalityRadio("American"),
+                          NationalityRadio("Chinese"),
+                          NationalityRadio("Swiss"),
+                          NationalityRadio("Japanese"),
+                          NationalityRadio("Korean"),
+                          NationalityRadio("English"),
+                        ],),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: ExpansionTile(
+                leading: Icon(Icons.local_library_rounded, size: 30, color: Colors.lightBlue),
+                title: Text("Education", style: TextStyle(fontSize: 30,),),
+                trailing: Text("$eduSel in $stream"),
+                children: [
+                  DropdownButton(
+                    isExpanded: true,
+                    items: edu.map((e) =>
+                        DropdownMenuItem(
+                          child: Text("$e",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold)),
+                          value: e,
+                          alignment: Alignment.center,)).toList(),
+                    value: eduSel,
+                    //alignment: Alignment.center,
+                    onChanged: (value) {
+                      setState(() {
+                        eduSel = value as String;
+                        print(eduSel);
+                      });
+                    },
+                    hint: Text("Select Education",
+                      style: TextStyle(fontSize: 20,color: Colors.black26),),
                   ),
-                )
-              ],
+                  TextField(
+                      //controller: stream,
+                      textInputAction: TextInputAction.next,
+                      style: TextStyle(color: Colors.black),
+                      onChanged: (value) {
+                        setState(() {
+                          stream = value;
+                        });
+                      },
+                      decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.lightBlueAccent.shade100,
+                                width: 2)),
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black12,
+                                width: 2)),
+                        hintText:"Enter Stream Name",
+                        hintStyle: TextStyle(color: Colors.black26,fontSize: 20),
+                      )),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: ExpansionTile(
-              leading: Icon(Icons.local_library_rounded, size: 30, color: Colors.lightBlue),
-              title: Text("Education", style: TextStyle(fontSize: 30,),),
-              trailing: Text("$eduSel in ${stream.text}"),
-              children: [
-                DropdownButton(
-                  isExpanded: true,
-                  items: edu.map((e) =>
-                      DropdownMenuItem(
-                        child: Text("$e",
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold)),
-                        value: e,
-                        alignment: Alignment.center,)).toList(),
-                  value: eduSel,
-                  //alignment: Alignment.center,
-                  onChanged: (value) {
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: ExpansionTile(
+                title: Text("Experience", style: TextStyle(fontSize: 30,)),
+                leading: Icon(Icons.work, size: 30, color: Colors.lightBlue),
+                trailing: Text(""),
+                children: [
+                  Exp_Type("Fresher"),
+                  Exp_Type("Experiance")
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              child: ExpansionTile(
+                leading: Icon(Icons.event_available, size: 30,  color: Colors.lightBlue),
+                title: Text("Soft Skills", style: TextStyle(fontSize: 30),),
+                trailing: Text(""),
+
+                children:
+                softSkill.asMap().entries.map((e) =>
+                    SoftCheck(soft_name: softSkill[e.key],soft_index: e.key)).toList(),
+
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              child: ExpansionTile(
+                leading: Icon(Icons.construction_rounded, size: 30,  color: Colors.lightBlue),
+                title: Text("Technical Skills", style: TextStyle(fontSize: 30),),
+                trailing: Text(""),
+
+                children:
+                techSkill.asMap().entries.map((e) =>
+                    TechCheck(tech_name: techSkill[e.key],tech_index: e.key)).toList(),
+
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: ExpansionTile(
+                leading: Icon(Icons.rocket_launch_rounded, size: 30, color: Colors.lightBlue),
+                title: Text("Objective", style: TextStyle(fontSize: 30,),),
+                trailing: Text(""),
+
+                children: [
+                  TextField(
+                      controller: objective,
+                      textInputAction: TextInputAction.next,
+                      style: TextStyle(color: Colors.black),
+                      decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.lightBlueAccent.shade100,
+                                width: 2)),
+                        border: OutlineInputBorder(),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black12,
+                                width: 2)),
+                        hintText: "To Work in an environment which encourages me to succeed and grow ......",
+                        hintStyle: TextStyle(color: Colors.black26,fontSize: 15),
+                      )),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: ExpansionTile(
+                leading: Icon(Icons.group, size: 30, color: Colors.lightBlue),
+                title: Text("Reference", style: TextStyle(fontSize: 30,),),
+                trailing: Text(""),
+                children: [
+                  Reference(labelname: "Referee's Name"),
+                  Reference(labelname: "Job Title"),
+                  Reference(labelname: "Company Name"),
+                  Reference(labelname: "Email"),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: ListTile(
+                  leading:
+                  Icon(Icons.workspace_premium_outlined, size: 30,
+                      color: Colors.lightBlue),
+                  title: Text(
+                    "Project",
+                    style: TextStyle(fontSize: 30,),
+                  ),
+                  trailing:
+                  Switch(value: project, onChanged: (value) {
                     setState(() {
-                      eduSel = value as String;
-                      print(eduSel);
+                      project = value;
                     });
-                  },
-                  hint: Text("Select Education",
-                    style: TextStyle(fontSize: 20,color: Colors.black26),),
-                ),
-                TextField(
-                    controller: stream,
-                    textInputAction: TextInputAction.next,
-                    style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.lightBlueAccent.shade100,
-                              width: 2)),
-                      border: OutlineInputBorder(),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black12,
-                              width: 2)),
-                      hintText:"Enter Stream Name",
-                      hintStyle: TextStyle(color: Colors.black26,fontSize: 20),
-                    )),
-              ],
+                  }, activeColor: Colors.white,)
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: ExpansionTile(
-              title: Text("Experience", style: TextStyle(fontSize: 30,)),
-              leading: Icon(Icons.work, size: 30, color: Colors.lightBlue),
-              children: [
-                Exp_Type("Fresher"),
-                Exp_Type("Experiance")
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            child: ExpansionTile(
-              leading: Icon(Icons.event_available, size: 30,  color: Colors.lightBlue),
-              title: Text("Soft Skills", style: TextStyle(fontSize: 30),),
+            Project("Enter Project Name"),
+            Project("Enter Project in Details"),
 
-              children:
-              softSkill.asMap().entries.map((e) =>
-                  SoftCheck(soft_name: softSkill[e.key],soft_index: e.key)).toList(),
-
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            child: ExpansionTile(
-              leading: Icon(Icons.construction_rounded, size: 30,  color: Colors.lightBlue),
-              title: Text("Technical Skills", style: TextStyle(fontSize: 30),),
-
-              children:
-              techSkill.asMap().entries.map((e) =>
-                  TechCheck(tech_name: techSkill[e.key],tech_index: e.key)).toList(),
-
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: ExpansionTile(
-              leading: Icon(Icons.rocket_launch_rounded, size: 30, color: Colors.lightBlue),
-              title: Text("Objective", style: TextStyle(fontSize: 30,),),
-
-              children: [
-                TextField(
-                    controller: objective,
-                    textInputAction: TextInputAction.next,
-                    style: TextStyle(color: Colors.black),
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.lightBlueAccent.shade100,
-                              width: 2)),
-                      border: OutlineInputBorder(),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black12,
-                              width: 2)),
-                      hintText: "To Work in an environment which encourages me to succeed and grow ......",
-                      hintStyle: TextStyle(color: Colors.black26,fontSize: 15),
-                    )),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: ExpansionTile(
-              leading: Icon(Icons.group, size: 30, color: Colors.lightBlue),
-              title: Text("Reference", style: TextStyle(fontSize: 30,),),
-              children: [
-                Reference(labelname: "Referee's Name"),
-                Reference(labelname: "Job Title"),
-                Reference(labelname: "Company Name"),
-                Reference(labelname: "Email"),
-              ],
-            ),
-          ),
-
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -297,6 +332,27 @@ class _New_ResumeState extends State<New_Resume> {
             labelStyle: TextStyle(color: Colors.lightBlueAccent.shade100,fontSize: 20),
 
           )),
+    );
+  }
+  Widget Project(String hint)
+  {
+    return Padding(
+      padding: const EdgeInsets.only(left: 8, right: 8.0, top: 15),
+      child: Visibility(visible: project,
+        child: TextField(
+            style: TextStyle(color: Colors.black),
+            decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.lightBlueAccent.shade100,
+                      width: 2)),
+              border: OutlineInputBorder(),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.lightBlue,
+                      width: 2)),
+              hintText:
+              "$hint",
+            )),
+      ),
     );
   }
 
