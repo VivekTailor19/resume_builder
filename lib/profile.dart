@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
-
   @override
   State<Profile> createState() => _ProfileState();
 }
@@ -31,13 +30,11 @@ class _ProfileState extends State<Profile> {
   bool project = false;
   bool mode = false;
   String? eduSel;
-
   bool demo = false;
   Color light = Colors.brown.shade500;
   Color dark = Colors.black;
   Color c1 = Colors.brown.shade500;
   RangeValues rangeValues = RangeValues(25000, 250000);
-
   String country = "Indian";
   String? countrySel;
 
