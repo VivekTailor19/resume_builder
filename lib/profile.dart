@@ -330,9 +330,6 @@ class _ProfileState extends State<Profile> {
                       style: TextStyle(fontSize: 20, color: Colors.blueGrey)),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,),),
-
-
-
               ],
             ),
           ),
@@ -439,7 +436,26 @@ class _ProfileState extends State<Profile> {
                 backgroundColor: Colors.redAccent),),
 
             ElevatedButton(onPressed: () {
-              //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("")));
+
+              var skills = "";
+              for(int i = 0 ; i<softselect.length ; i++)
+                {
+                  if(softselect[i] == true)
+                    {
+                      skills = "$skills  ${softSkill[i]}" ;
+                    }
+                }
+              Navigator.pop(context);
+
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Column(mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text("Name = ${user_name.text} Address = ${user_address.text}"),
+                  Text("Contact = ${user_contact.text} Email = ${user_email.text}"),
+                  Text(" Nationality = $country"),
+                  Text("Education = $eduSel"),
+                  Text("Soft Skills = $skills")
+                ],
+              )));
             },
               child: Text("SnackBar View",style: TextStyle(fontSize: 15),), style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber),),
