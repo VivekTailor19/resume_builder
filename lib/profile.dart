@@ -19,6 +19,10 @@ class _ProfileState extends State<Profile> {
     "Database"
   ];
   List techselect = [false, false, false, false, false];
+  List softSkill = [
+    "Public Speaking","LeaderShip","Time Management","Critical Thinking","Positive attitude"
+  ];
+  List softselect = [false, false, false, false, false];
   bool project = false;
   bool mode = false;
   String? eduSel;
@@ -28,11 +32,9 @@ class _ProfileState extends State<Profile> {
   Color dark = Colors.black;
   Color c1 = Colors.brown.shade500;
   RangeValues rangeValues = RangeValues(25000, 250000);
-  String country = "Indian";
-// List country = ["Indian","American"];
-  //,"USA","Israil","UAE","China"];
-  String? countrySel;
 
+  String country = "Indian";
+  String? countrySel;
 
   @override
   Widget build(BuildContext context) {
@@ -97,141 +99,53 @@ class _ProfileState extends State<Profile> {
                   color: Colors.white,
                 ),
                 children: [
+                  Personal("Enter Full Name"),
+                  Personal("Enter Address"),
+                  Personal("Enter Email Id"),
+                  Personal("Enter Contact No"),
                   Padding(
                     padding: EdgeInsets.only(left: 8, right: 8.0, top: 15),
-                    child: TextField(textInputAction: TextInputAction.next,
-                      style: TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white,
-                                  width: 2)),
-                          border: OutlineInputBorder(),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white,
-                                  width: 2)),
-                          label: Text(
-                            "Enter Full Name",
-                            style: TextStyle(color: Colors.white),
-                          )),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 8.0, vertical: 20),
-                    child: TextField(
-                      style: TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white,
-                                  width: 2)),
-                          border: OutlineInputBorder(),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white,
-                                  width: 2)),
-                          label: Text(
-                            "Enter Address ",
-                            style: TextStyle(color: Colors.white),
-                          )),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 8.0,
-                    ),
-                    child: TextField(
-                      style: TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white,
-                                  width: 2)),
-                          border: OutlineInputBorder(),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white,
-                                  width: 2)),
-                          label: Text(
-                            "Enter Email ",
-                            style: TextStyle(color: Colors.white),
-                          )),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 8.0, vertical: 20),
-                    child: TextField(
-                      style: TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white,
-                                  width: 2)),
-                          border: OutlineInputBorder(),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white,
-                                  width: 2)),
-                          label: Text(
-                            "Enter Contact ",
-                            style: TextStyle(color: Colors.white),
-                          )),
-                    ),
-                  ),
-                  Container(color: Colors.white,
-                    child:ExpansionTile(
-                      //backgroundColor: Colors.green.shade50,
-                      collapsedIconColor: Colors.red,
-                      collapsedBackgroundColor: Colors.green.shade50,
+                    child: Container(color: Colors.white,
+                      child:ExpansionTile(
+                        collapsedBackgroundColor: Colors.red.shade50,
+                        collapsedTextColor: Colors.redAccent,
+                        collapsedIconColor: Colors.redAccent,
+                        backgroundColor: Colors.orange.shade50,
+                        textColor: Colors.orange,
+                        iconColor: Colors.orange,
+                        leading: Icon(Icons.location_history,size: 25,),
+                        title: Text("Nationality",style: TextStyle(fontSize: 25, )),
+                        children: [
 
-                      leading: Icon(Icons.location_history,size: 25,color: Colors.green),
-                      title: Text("Nationality",style: TextStyle(color: Colors.green,fontSize: 25)),
-                      children: [
-                        RadioListTile(value: "Indian", groupValue: country, onChanged: (value) {
-                          setState(() {
-                            country = value!;
-                          });},
-                            title: Text("Indian",style: TextStyle(fontSize: 15,color: Colors.green)),activeColor: Colors.green),
-                        RadioListTile(value: "American", groupValue: country, onChanged: (value) {
-                          setState(() {
-                            country = value!;
-                          });},
-                            title: Text("American",style: TextStyle(fontSize: 15,color: Colors.green),),activeColor: Colors.green),
-                        RadioListTile(value: "Korean", groupValue: country, onChanged: (value) {
-                          setState(() {
-                            country = value!;
-                          });},
-                            title: Text("Korean",style: TextStyle(fontSize: 15,color: Colors.green)),activeColor: Colors.green),
-                        RadioListTile(value: "Swiss", groupValue: country, onChanged: (value) {
-                          setState(() {
-                            country = value!;
-                          });},
-                            title: Text("Swiss",style: TextStyle(fontSize: 15,color: Colors.green)),activeColor: Colors.green),
+                          NationalityRadio("Indian"),
+                          NationalityRadio("American"),
+                          NationalityRadio("Chinese"),
+                          NationalityRadio("Swiss"),
+                          NationalityRadio("Japanese"),
+                          NationalityRadio("Korean"),
+                          NationalityRadio("English"),
 
-
-                      ],),
+                        ],),
+                    ),
                   )
                 ],
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 10),
 
               ListTile(
-                leading:
-                Icon(Icons.school_outlined, size: 30, color: Colors.white),
-                title: Text(
-                  "Education",
-                  style: TextStyle(fontSize: 30, color: Colors.white),
-                ),
-                trailing: Icon(
-                  Icons.edit,
-                  size: 30,
-                  color: Colors.white,
-                ),
+                leading: Icon(Icons.school_outlined, size: 30, color: Colors.white),
+                title: Text("Education", style: TextStyle(fontSize: 30, color: Colors.white)),
+                trailing: Icon(Icons.edit, size: 30, color: Colors.white,),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10.0),
-                child: DropdownButton(dropdownColor: Colors.black54,
+                child: DropdownButton(dropdownColor: Colors.black,
                   isExpanded: true,
                   items: edu.map((e) =>
                       DropdownMenuItem(child: Text("$e", style: TextStyle(
-                          color: Colors.white, fontSize: 20)), value: e,))
-                      .toList(),
+                          color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold)),
+                        value: e,alignment: Alignment.center,)).toList(),
                   value: eduSel,
                   //alignment: Alignment.center,
                   onChanged: (value) {
@@ -245,7 +159,7 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               ExpansionTile(
                 leading:
                 Icon(Icons.event_available, size: 30, color: Colors.white),
@@ -343,7 +257,7 @@ class _ProfileState extends State<Profile> {
                 ],
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 10),
 
               ListTile(
                   leading:
@@ -360,112 +274,30 @@ class _ProfileState extends State<Profile> {
                     });
                   }, activeColor: Colors.white,)
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Visibility(visible: project,
-                  child: TextField(
-                      style: TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white,
-                                width: 2)),
-                        border: OutlineInputBorder(),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white,
-                                width: 2)),
-                        hintText:
-                        "Enter Project Name",
-                        hintStyle: TextStyle(color: Colors.white),
-                      )),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Visibility(visible: project,
-                  child: TextField(
-                      style: TextStyle(color: Colors.white),
-                      decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white,
-                                width: 2)),
-                        border: OutlineInputBorder(),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white,
-                                width: 2)),
-                        hintText:
-                        "Enter Project in Details",
-                        hintStyle: TextStyle(color: Colors.white),
-                      )),
-                ),
-              ),
+              Project("Enter Project Name"),
+              Project("Enter Project in Details"),
 
-              SizedBox(height: 20),
+              SizedBox(height: 10),
+
 
               ExpansionTile(
-                leading:
-                Icon(Icons.event_available, size: 30, color: Colors.white),
-                title: Text(
-                  "Soft Skills",
-                  style: TextStyle(fontSize: 30, color: Colors.white),
-                ),
+                leading: Icon(Icons.event_available, size: 30, color: Colors.white),
+                title: Text("Soft Skills", style: TextStyle(fontSize: 30, color: Colors.white),),
 
-                children: [
-                  CheckboxListTile(value: techselect[0],
-                    onChanged: (value) {
-                      setState(() {
-                        techselect[0] = value;
-                      });
-                    },
-                    side: MaterialStateBorderSide.resolveWith((states) {
-                      return BorderSide(color: Colors.white);
-                    }),
-                    activeColor: Colors.blueGrey,
-                    checkColor: Colors.white,
-                    title: Text("Public Speaking",
-                      style: TextStyle(fontSize: 20, color: Colors.white),),),
-                  CheckboxListTile(value: techselect[1],
-                    onChanged: (value) {
-                      setState(() {
-                        techselect[1] = value;
-                      });
-                    },
-                    side: MaterialStateBorderSide.resolveWith((states) {
-                      return BorderSide(color: Colors.white);
-                    }),
-                    activeColor: Colors.blueGrey,
-                    checkColor: Colors.white,
-                    title: Text("Time management",
-                      style: TextStyle(fontSize: 20, color: Colors.white),),),
-                  CheckboxListTile(value: techselect[2],
-                    onChanged: (value) {
-                      setState(() {
-                        techselect[2] = value;
-                      });
-                    },
-                    side: MaterialStateBorderSide.resolveWith((states) {
-                      return BorderSide(color: Colors.white);
-                    }),
-                    activeColor: Colors.blueGrey,
-                    checkColor: Colors.white,
-                    title: Text("Critical thinking",
-                      style: TextStyle(fontSize: 20, color: Colors.white),),),
-                  CheckboxListTile(value: techselect[3],
-                    onChanged: (value) {
-                      setState(() {
-                        techselect[3] = value;
-                      });
-                    },
-                    side: MaterialStateBorderSide.resolveWith((states) {
-                      return BorderSide(color: Colors.white);
-                    }),
-                    activeColor: Colors.blueGrey,
-                    checkColor: Colors.white,
-                    title: Text("Leadership",
-                      style: TextStyle(fontSize: 20, color: Colors.white),),),
-                ],
+                children:
+                softSkill.asMap().entries.map((e) =>
+                    SoftCheck(soft_name: softSkill[e.key],index: e.key)).toList(),
+
+                // [
+               //    SoftCheck("Public Speaking"),
+               //    SoftCheck("Time Management"),
+               //    SoftCheck("Critical Thinking"),
+               //    SoftCheck("Leadership"),
+               //    SoftCheck("PowerFull"),
+               //  ],
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 10),
 
               ExpansionTile(
                   leading: Text("₹",style: TextStyle(fontSize: 30,color: Colors.white)),
@@ -473,18 +305,21 @@ class _ProfileState extends State<Profile> {
                     "Expected Salary",
                     style: TextStyle(fontSize: 30, color: Colors.white),
                   ),
-              ),
-              RangeSlider(values: rangeValues, onChanged: (value){
-                setState(() {
-                  rangeValues = value;
-                });
-              },min: 10000,max: 300000,divisions: 29,
-                labels: RangeLabels("${rangeValues.start.round()}", "${rangeValues.end.round()}"),
-                activeColor: Colors.white,
-                //inactiveColor: Colors.white,
+                children: [
+                  RangeSlider(values: rangeValues, onChanged: (value){
+                    setState(() {
+                      rangeValues = value;
+                    });
+                  },min: 10000,max: 300000,divisions: 29,
+                    labels: RangeLabels("${rangeValues.start.round()}", "${rangeValues.end.round()}"),
+                    activeColor: Colors.white,
+                    //inactiveColor: Colors.white,
+                  ),
+                ],
               ),
 
-              SizedBox(height: 20),
+
+              SizedBox(height: 10),
 
               ElevatedButton(
                 onPressed: () {
@@ -516,4 +351,79 @@ class _ProfileState extends State<Profile> {
       ),
     );
   }
+
+  Widget Personal(String labelname)
+  {
+    return Padding(
+      padding: EdgeInsets.only(left: 8, right: 8.0, top: 15),
+      child: TextField(textInputAction: TextInputAction.next,
+        style: TextStyle(color: Colors.white),
+        decoration: InputDecoration(
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white,
+                    width: 2)),
+            border: OutlineInputBorder(),
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white,
+                    width: 2)),
+            label: Text(
+              "$labelname",
+              style: TextStyle(color: Colors.white),
+            )),
+      ),
+    );
+  }
+
+  Widget Project(String hint)
+  {
+    return Padding(
+      padding: const EdgeInsets.only(left: 8, right: 8.0, top: 15),
+      child: Visibility(visible: project,
+        child: TextField(
+            style: TextStyle(color: Colors.white),
+            decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white,
+                      width: 2)),
+              border: OutlineInputBorder(),
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white,
+                      width: 2)),
+              hintText:
+              "$hint",
+              hintStyle: TextStyle(color: Colors.white),
+            )),
+      ),
+    );
+  }
+
+  Widget NationalityRadio(String country_name)
+  {
+    return RadioListTile(value: "$country_name", groupValue: country, onChanged: (value) {
+        setState(() {
+          country = value!;
+        });},
+          title: Text("$country_name",style: TextStyle(fontSize: 15,),),activeColor: Colors.green);
+
+  }
+
+  Widget SoftCheck({String? soft_name, int? index})
+  {
+    return CheckboxListTile(
+      value: softselect[index!],
+      onChanged: (value) {
+        setState(() {
+          softselect[index] = value;
+        });
+      },
+      side: MaterialStateBorderSide.resolveWith((states) {
+        return BorderSide(color: Colors.white);
+      }),
+      activeColor: Colors.brown.shade500,
+      checkColor: Colors.white,
+      title: Text("$soft_name",
+        style: TextStyle(fontSize: 20, color: Colors.white),),
+    );
+  }
+
 }
