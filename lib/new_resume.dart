@@ -186,12 +186,10 @@ class _New_ResumeState extends State<New_Resume> {
               leading: Icon(Icons.group, size: 30, color: Colors.lightBlue),
               title: Text("Reference", style: TextStyle(fontSize: 30,),),
               children: [
-
                 Reference(labelname: "Referee's Name"),
                 Reference(labelname: "Job Title"),
                 Reference(labelname: "Company Name"),
                 Reference(labelname: "Email"),
-
               ],
             ),
           ),
