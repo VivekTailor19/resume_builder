@@ -123,7 +123,6 @@ class _ProfileState extends State<Profile> {
                           leading: Icon(Icons.location_history,size: 25,),
                           title: Text("Nationality",style: TextStyle(fontSize: 25, )),
                           children: [
-
                             NationalityRadio("Indian"),
                             NationalityRadio("American"),
                             NationalityRadio("Chinese"),
@@ -131,7 +130,6 @@ class _ProfileState extends State<Profile> {
                             NationalityRadio("Japanese"),
                             NationalityRadio("Korean"),
                             NationalityRadio("English"),
-
                           ],),
                       ),
                     )
