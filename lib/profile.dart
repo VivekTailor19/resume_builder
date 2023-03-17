@@ -156,8 +156,8 @@ class _ProfileState extends State<Profile> {
                         print(eduSel);
                       });
                     },
-                    hint: Text("  *   *   *   Enter Education  *   *   *   ",
-                      style: TextStyle(fontSize: 20, color: Colors.white),),
+                    hint: Text("Select Education",
+                      style: TextStyle(fontSize: 20,),),
                   ),
                 ),
 
