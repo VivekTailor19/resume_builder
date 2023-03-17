@@ -22,6 +22,14 @@ class _New_ResumeState extends State<New_Resume> {
   String exp = "Experience";
   String? expSel;
 
+  List softSkill = ["Public Speaking","LeaderShip","Time Management","Critical Thinking","Positive attitude"];
+  List softselect = [false, false, false, false, false];
+
+  List techSkill = ["Basic Programming","Web Designing","Network Security","Mobile Developing","Database"];
+  List techselect = [false, false, false, false, false];
+
+  TextEditingController objective = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,10 +131,69 @@ class _New_ResumeState extends State<New_Resume> {
               ],
             ),
           ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: ExpansionTile(
+              leading: Icon(Icons.event_available, size: 30,  color: Colors.lightBlue),
+              title: Text("Soft Skills", style: TextStyle(fontSize: 30),),
 
+              children:
+              softSkill.asMap().entries.map((e) =>
+                  SoftCheck(soft_name: softSkill[e.key],soft_index: e.key)).toList(),
 
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: ExpansionTile(
+              leading: Icon(Icons.construction_rounded, size: 30,  color: Colors.lightBlue),
+              title: Text("Technical Skills", style: TextStyle(fontSize: 30),),
 
+              children:
+              techSkill.asMap().entries.map((e) =>
+                  TechCheck(tech_name: techSkill[e.key],tech_index: e.key)).toList(),
 
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: ExpansionTile(
+              leading: Icon(Icons.rocket_launch_rounded, size: 30, color: Colors.lightBlue),
+              title: Text("Objective", style: TextStyle(fontSize: 30,),),
+
+              children: [
+                TextField(
+                    controller: objective,
+                    textInputAction: TextInputAction.next,
+                    style: TextStyle(color: Colors.black),
+                    decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.lightBlueAccent.shade100,
+                              width: 2)),
+                      border: OutlineInputBorder(),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black12,
+                              width: 2)),
+                      hintText: "To Work in an environment which encourages me to succeed and grow ......",
+                      hintStyle: TextStyle(color: Colors.black26,fontSize: 15),
+                    )),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: ExpansionTile(
+              leading: Icon(Icons.group, size: 30, color: Colors.lightBlue),
+              title: Text("Reference", style: TextStyle(fontSize: 30,),),
+
+              children: [
+                Reference(labelname: "Referee's Name"),
+                Reference(labelname: "Job Title"),
+                Reference(labelname: "Company Name"),
+                Reference(labelname: "Email"),
+              ],
+            ),
+          ),
 
         ],
       ),
@@ -182,7 +249,56 @@ class _New_ResumeState extends State<New_Resume> {
         print(exp);
       });},
       title: Text("$type_name",style: TextStyle(fontSize: 15)),);
+  }
 
+  Widget SoftCheck({String? soft_name, int? soft_index})
+  {
+    return CheckboxListTile(
+      value: softselect[soft_index!],
+      onChanged: (value) {
+        setState(() {
+          softselect[soft_index] = value;
+        });
+      },
+      title: Text("$soft_name",
+        style: TextStyle(fontSize: 20,),),
+    );
+  }
+  Widget TechCheck({String? tech_name, int? tech_index})
+  {
+    return CheckboxListTile(
+      value: techselect[tech_index!],
+      onChanged: (value) {
+        setState(() {
+          techselect[tech_index] = value;
+        });
+      },
+      title: Text("$tech_name",
+        style: TextStyle(fontSize: 20,),),
+    );
+  }
+
+  Widget Reference({ String? labelname, TextEditingController? data})
+  {
+    return Padding(
+      padding: EdgeInsets.only(top: 5),
+      child: TextField(
+          controller: data,
+          textInputAction: TextInputAction.next,
+          style: TextStyle(color: Colors.black),
+          decoration: InputDecoration(
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.lightBlueAccent.shade100,
+                    width: 2)),
+            border: OutlineInputBorder(),
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.black12,
+                    width: 2)),
+            label: Text("$labelname"),
+            labelStyle: TextStyle(color: Colors.lightBlueAccent.shade100,fontSize: 20),
+
+          )),
+    );
   }
 
 }
