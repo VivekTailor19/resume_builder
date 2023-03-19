@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:resume_builder/resumeDataModal.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
+
   @override
   State<Profile> createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
-
   TextEditingController user_name = TextEditingController();
   TextEditingController user_address = TextEditingController();
   TextEditingController user_email = TextEditingController();
   TextEditingController user_contact = TextEditingController();
+  TextEditingController user_country = TextEditingController();
+  TextEditingController user_project = TextEditingController();
+  TextEditingController user_project_info = TextEditingController();
 
   List edu = ["B.E.", "M.B.B.S", "Ph.D", "SSC", "HSC", "B.Sc"];
+  String? eduSel;
+
   List techSkill = [
     "Basic Programming",
     "Web Designing",
@@ -23,20 +29,32 @@ class _ProfileState extends State<Profile> {
     "Database"
   ];
   List techselect = [false, false, false, false, false];
+  var techskills = "";
+
   List softSkill = [
-    "Public Speaking","LeaderShip","Time Management","Critical Thinking","Positive attitude"
+    "Public Speaking",
+    "LeaderShip",
+    "Time Management",
+    "Critical Thinking",
+    "Positive attitude"
   ];
   List softselect = [false, false, false, false, false];
+  var softskills = "";
   bool project = false;
-  bool mode = false;
-  String? eduSel;
+
   bool demo = false;
+
+  bool mode = false;
   Color light = Colors.brown.shade500;
   Color dark = Colors.black;
   Color c1 = Colors.brown.shade500;
+
   RangeValues rangeValues = RangeValues(25000, 250000);
+
   String country = "Indian";
   String? countrySel;
+
+  ResumeModal rm = ResumeModal();
 
   @override
   Widget build(BuildContext context) {
@@ -47,20 +65,20 @@ class _ProfileState extends State<Profile> {
           backgroundColor: c1,
           appBar: AppBar(
             backgroundColor: c1,
-            leading: Switch(value: mode, onChanged: (value) {
-              setState(() {
-                mode = value;
-                if( mode == false )
-                {
-                  c1 = light;
-                }
-                else
-                {
-                  c1 = dark;
-                }
-              });
-            }, activeColor: Colors.white,),
-
+            leading: Switch(
+              value: mode,
+              onChanged: (value) {
+                setState(() {
+                  mode = value;
+                  if (mode == false) {
+                    c1 = light;
+                  } else {
+                    c1 = dark;
+                  }
+                });
+              },
+              activeColor: Colors.white,
+            ),
             title: Text(
               "Profile",
               style: TextStyle(color: Colors.white, fontSize: 25),
@@ -69,8 +87,7 @@ class _ProfileState extends State<Profile> {
             elevation: 0,
             actions: [
               PopupMenuButton(
-                itemBuilder: (context) =>
-                [
+                itemBuilder: (context) => [
                   PopupMenuItem(
                     child: Text("Setting"),
                     onTap: () {},
@@ -92,7 +109,7 @@ class _ProfileState extends State<Profile> {
               children: [
                 ExpansionTile(
                   leading:
-                  Icon(Icons.person_outline, size: 30, color: Colors.white),
+                      Icon(Icons.person_outline, size: 30, color: Colors.white),
                   title: Text(
                     "Personal Information",
                     style: TextStyle(fontSize: 30, color: Colors.white),
@@ -103,22 +120,29 @@ class _ProfileState extends State<Profile> {
                     color: Colors.white,
                   ),
                   children: [
-                    Personal("Enter Full Name",user_name),
-                    Personal("Enter Address",user_address),
-                    Personal("Enter Email Id",user_email),
-                    Personal("Enter Contact No",user_contact),
+                    Personal("Enter Full Name", user_name),
+                    Personal("Enter Address", user_address),
+                    Personal("Enter Email Id", user_email),
+                    Personal("Enter Contact No", user_contact),
                     Padding(
                       padding: EdgeInsets.only(left: 8, right: 8.0, top: 15),
-                      child: Container(color: Colors.white,
-                        child:ExpansionTile(
+                      child: Container(
+                        color: Colors.white,
+                        child: ExpansionTile(
                           collapsedBackgroundColor: Colors.red.shade50,
                           collapsedTextColor: Colors.redAccent,
                           collapsedIconColor: Colors.redAccent,
                           backgroundColor: Colors.orange.shade50,
                           textColor: Colors.orange,
                           iconColor: Colors.orange,
-                          leading: Icon(Icons.location_history,size: 25,),
-                          title: Text("Nationality",style: TextStyle(fontSize: 25, )),
+                          leading: Icon(
+                            Icons.location_history,
+                            size: 25,
+                          ),
+                          title: Text("Nationality",
+                              style: TextStyle(
+                                fontSize: 25,
+                              )),
                           children: [
                             NationalityRadio("Indian"),
                             NationalityRadio("American"),
@@ -127,27 +151,40 @@ class _ProfileState extends State<Profile> {
                             NationalityRadio("Japanese"),
                             NationalityRadio("Korean"),
                             NationalityRadio("English"),
-                          ],),
+                          ],
+                        ),
                       ),
                     )
                   ],
                 ),
-
                 SizedBox(height: 10),
-
                 ListTile(
-                  leading: Icon(Icons.school_outlined, size: 30, color: Colors.white),
-                  title: Text("Education", style: TextStyle(fontSize: 30, color: Colors.white)),
-                  trailing: Icon(Icons.edit, size: 30, color: Colors.white,),
+                  leading: Icon(Icons.school_outlined,
+                      size: 30, color: Colors.white),
+                  title: Text("Education",
+                      style: TextStyle(fontSize: 30, color: Colors.white)),
+                  trailing: Icon(
+                    Icons.edit,
+                    size: 30,
+                    color: Colors.white,
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.0),
-                  child: DropdownButton(dropdownColor: Colors.black,
+                  child: DropdownButton(
+                    dropdownColor: Colors.black,
                     isExpanded: true,
-                    items: edu.map((e) =>
-                        DropdownMenuItem(child: Text("$e", style: TextStyle(
-                            color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold)),
-                          value: e,alignment: Alignment.center,)).toList(),
+                    items: edu
+                        .map((e) => DropdownMenuItem(
+                              child: Text("$e",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold)),
+                              value: e,
+                              alignment: Alignment.center,
+                            ))
+                        .toList(),
                     value: eduSel,
                     //alignment: Alignment.center,
                     onChanged: (value) {
@@ -156,167 +193,194 @@ class _ProfileState extends State<Profile> {
                         print(eduSel);
                       });
                     },
-                    hint: Text("  *   *   *   Enter Education  *   *   *   ",
-                      style: TextStyle(fontSize: 20, color: Colors.white),),
+                    hint: Text(
+                      "  *   *   *   Enter Education  *   *   *   ",
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
                   ),
                 ),
-
                 SizedBox(height: 10),
                 ExpansionTile(
-                  leading:
-                  Icon(Icons.event_available, size: 30, color: Colors.white),
+                  leading: Icon(Icons.event_available,
+                      size: 30, color: Colors.white),
                   title: Text(
                     "Technical Skills",
                     style: TextStyle(fontSize: 30, color: Colors.white),
                   ),
-                  trailing:
-                  InkWell(
+                  trailing: InkWell(
                     onTap: () {
                       setState(() {
-                        if(demo==false)
-                          {
-                            demo=true;
-                          }
-                        else
-                          {
-                            demo=false;
-                          }
+                        if (demo == false) {
+                          demo = true;
+                        } else {
+                          demo = false;
+                        }
                       });
                     },
-                    child: demo==false?Icon(
-                      Icons.arrow_drop_down,
-                      size: 30,
-                      color: Colors.white,
-                    ):Icon(
-                      Icons.arrow_drop_up,
-                      size: 30,
-                      color: Colors.white,
-                    ),
+                    child: demo == false
+                        ? Icon(
+                            Icons.arrow_drop_down,
+                            size: 30,
+                            color: Colors.white,
+                          )
+                        : Icon(
+                            Icons.arrow_drop_up,
+                            size: 30,
+                            color: Colors.white,
+                          ),
                   ),
                   children: [
-                   Visibility(
-                     visible: demo,
-                     child: Column(
-                       children: [
-                         CheckboxListTile(value: techselect[0],
-                           onChanged: (value) {
-                             setState(() {
-                               techselect[0] = value;
-                             });
-                           },
-                           checkColor: Colors.white,
-                           activeColor: Colors.white,
-                           title: Text("${techSkill[0]}",
-                             style: TextStyle(fontSize: 20, color: Colors.white),),),
-                         CheckboxListTile(value: techselect[1],
-                           onChanged: (value) {
-                             setState(() {
-                               techselect[1] = value;
-                             });
-                           },
-                           checkColor: Colors.black,
-                           activeColor: Colors.white,
-                           title: Text("${techSkill[1]}",
-                             style: TextStyle(fontSize: 20, color: Colors.white),),),
-                         CheckboxListTile(value: techselect[2],
-                           onChanged: (value) {
-                             setState(() {
-                               techselect[2] = value;
-                             });
-                           },
-                           checkColor: Colors.black,
-                           activeColor: Colors.white,
-                           title: Text("${techSkill[2]}",
-                             style: TextStyle(fontSize: 20, color: Colors.white),),),
-                         CheckboxListTile(value: techselect[3],
-                           onChanged: (value) {
-                             setState(() {
-                               techselect[3] = value;
-                             });
-                           },
-                           side: MaterialStateBorderSide.resolveWith((states) {
-                             return BorderSide(color: Colors.white);
-                           }),
-
-
-                           activeColor: Colors.blueGrey,
-                           checkColor: Colors.white,
-                           title: Text("${techSkill[3]}",
-                             style: TextStyle(fontSize: 20, color: Colors.white),),),
-                         CheckboxListTile(value: techselect[4],
-                           onChanged: (value) {
-                             setState(() {
-                               techselect[4] = value;
-                             });
-                           },
-                           checkColor: Colors.black,
-                           activeColor: Colors.white,
-                           title: Text("${techSkill[4]}",
-                             style: TextStyle(fontSize: 20, color: Colors.white),),),
-                       ],
-                     ),
-                   )
+                    Visibility(
+                      visible: demo,
+                      child: Column(
+                        children: [
+                          CheckboxListTile(
+                            value: techselect[0],
+                            onChanged: (value) {
+                              setState(() {
+                                techselect[0] = value;
+                              });
+                            },
+                            checkColor: Colors.white,
+                            activeColor: Colors.white,
+                            title: Text(
+                              "${techSkill[0]}",
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                          ),
+                          CheckboxListTile(
+                            value: techselect[1],
+                            onChanged: (value) {
+                              setState(() {
+                                techselect[1] = value;
+                              });
+                            },
+                            checkColor: Colors.black,
+                            activeColor: Colors.white,
+                            title: Text(
+                              "${techSkill[1]}",
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                          ),
+                          CheckboxListTile(
+                            value: techselect[2],
+                            onChanged: (value) {
+                              setState(() {
+                                techselect[2] = value;
+                              });
+                            },
+                            checkColor: Colors.black,
+                            activeColor: Colors.white,
+                            title: Text(
+                              "${techSkill[2]}",
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                          ),
+                          CheckboxListTile(
+                            value: techselect[3],
+                            onChanged: (value) {
+                              setState(() {
+                                techselect[3] = value;
+                              });
+                            },
+                            side: MaterialStateBorderSide.resolveWith((states) {
+                              return BorderSide(color: Colors.white);
+                            }),
+                            activeColor: Colors.blueGrey,
+                            checkColor: Colors.white,
+                            title: Text(
+                              "${techSkill[3]}",
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                          ),
+                          CheckboxListTile(
+                            value: techselect[4],
+                            onChanged: (value) {
+                              setState(() {
+                                techselect[4] = value;
+                              });
+                            },
+                            checkColor: Colors.black,
+                            activeColor: Colors.white,
+                            title: Text(
+                              "${techSkill[4]}",
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
-
                 SizedBox(height: 10),
-
                 ListTile(
-                    leading:
-                    Icon(Icons.workspace_premium_outlined, size: 30,
-                        color: Colors.white),
+                    leading: Icon(Icons.workspace_premium_outlined,
+                        size: 30, color: Colors.white),
                     title: Text(
                       "Project",
                       style: TextStyle(fontSize: 30, color: Colors.white),
                     ),
-                    trailing:
-                    Switch(value: project, onChanged: (value) {
-                      setState(() {
-                        project = value;
-                      });
-                    }, activeColor: Colors.white,)
-                ),
-                Project("Enter Project Name"),
-                Project("Enter Project in Details"),
-
+                    trailing: Switch(
+                      value: project,
+                      onChanged: (value) {
+                        setState(() {
+                          project = value;
+                        });
+                      },
+                      activeColor: Colors.white,
+                    )),
+                Project("Enter Project Name", user_project),
+                Project("Enter Project in Details", user_project_info),
                 SizedBox(height: 10),
-
-
                 ExpansionTile(
-                  leading: Icon(Icons.event_available, size: 30, color: Colors.white),
-                  title: Text("Soft Skills", style: TextStyle(fontSize: 30, color: Colors.white),),
+                  leading: Icon(Icons.event_available,
+                      size: 30, color: Colors.white),
+                  title: Text(
+                    "Soft Skills",
+                    style: TextStyle(fontSize: 30, color: Colors.white),
+                  ),
 
-                  children:
-                  softSkill.asMap().entries.map((e) =>
-                      SoftCheck(soft_name: softSkill[e.key],index: e.key)).toList(),
+                  children: softSkill
+                      .asMap()
+                      .entries
+                      .map((e) =>
+                          SoftCheck(soft_name: softSkill[e.key], index: e.key))
+                      .toList(),
 
-                 // [SoftCheck("Public Speaking"),SoftCheck("Time Management"), SoftCheck("Critical Thinking"),SoftCheck("Leadership"), SoftCheck("PowerFull")],
+                  // [SoftCheck("Public Speaking"),SoftCheck("Time Management"), SoftCheck("Critical Thinking"),SoftCheck("Leadership"), SoftCheck("PowerFull")],
                 ),
-
                 SizedBox(height: 10),
-
                 ExpansionTile(
-                    leading: Text("₹",style: TextStyle(fontSize: 30,color: Colors.white)),
-                    title: Text(
-                      "Expected Salary",
-                      style: TextStyle(fontSize: 30, color: Colors.white),
-                    ),
+                  leading: Text("₹",
+                      style: TextStyle(fontSize: 30, color: Colors.white)),
+                  title: Text(
+                    "Expected Salary",
+                    style: TextStyle(fontSize: 30, color: Colors.white),
+                  ),
                   children: [
-                    RangeSlider(values: rangeValues, onChanged: (value){
-                      setState(() {
-                        rangeValues = value;
-                      });
-                    },min: 10000,max: 300000,divisions: 29,
-                      labels: RangeLabels("${rangeValues.start.round()}", "${rangeValues.end.round()}"),
+                    RangeSlider(
+                      values: rangeValues,
+                      onChanged: (value) {
+                        setState(() {
+                          rangeValues = value;
+                        });
+                      },
+                      min: 10000,
+                      max: 300000,
+                      divisions: 29,
+                      labels: RangeLabels("${rangeValues.start.round()}",
+                          "${rangeValues.end.round()}"),
                       activeColor: Colors.white,
                       //inactiveColor: Colors.white,
                     ),
                   ],
                 ),
-
-
                 SizedBox(height: 10),
-
                 ElevatedButton(
                   onPressed: () {
                     showExitDialog();
@@ -324,7 +388,28 @@ class _ProfileState extends State<Profile> {
                   child: Text("Submit",
                       style: TextStyle(fontSize: 20, color: Colors.blueGrey)),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,),),
+                    backgroundColor: Colors.white,
+                  ),
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      rm = ResumeModal(
+                          user_name: user_name.text,
+                          user_address: user_address.text,
+                          user_contact: user_contact.text,
+                          user_email: user_email.text,
+                          user_education: eduSel,
+                          user_tech_skills: techskills,
+                          user_soft_skills: softskills,
+                          user_project: user_project.text,
+                          user_project_details: user_project_info.text);
+                      Navigator.pushNamed(context, "preview", arguments: rm);
+                    },
+                    child: Text(
+                      "View Your Resume",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20),
+                    ))
               ],
             ),
           ),
@@ -333,8 +418,7 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  Widget Personal(String labelname, TextEditingController data)
-  {
+  Widget Personal(String labelname, TextEditingController data) {
     return Padding(
       padding: EdgeInsets.only(left: 8, right: 8.0, top: 15),
       child: TextField(
@@ -343,12 +427,10 @@ class _ProfileState extends State<Profile> {
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white,
-                    width: 2)),
+                borderSide: BorderSide(color: Colors.white, width: 2)),
             border: OutlineInputBorder(),
             enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.white,
-                    width: 2)),
+                borderSide: BorderSide(color: Colors.white, width: 2)),
             label: Text(
               "$labelname",
               style: TextStyle(color: Colors.white),
@@ -357,42 +439,50 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  Widget Project(String hint)
-  {
+  Widget Project(String hint, TextEditingController data) {
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 8.0, top: 15),
-      child: Visibility(visible: project,
+      child: Visibility(
+        visible: project,
         child: TextField(
+            controller: data,
             style: TextStyle(color: Colors.white),
             decoration: InputDecoration(
               focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white,
-                      width: 2)),
+                  borderSide: BorderSide(color: Colors.white, width: 2)),
               border: OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white,
-                      width: 2)),
-              hintText:
-              "$hint",
+                  borderSide: BorderSide(color: Colors.white, width: 2)),
+              hintText: "$hint",
               hintStyle: TextStyle(color: Colors.white),
             )),
       ),
     );
   }
 
-  Widget NationalityRadio(String country_name)
-  {
-    return RadioListTile(value: "$country_name", groupValue: country, onChanged: (value) {
-        setState(() {
-          country = value!;
-          print(country);
-        });},
-          title: Text("$country_name",style: TextStyle(fontSize: 15,),),activeColor: Colors.green);
+  Widget NationalityRadio(String country_name) {
+    return RadioListTile(
+        value: "$country_name",
+        groupValue: country,
+        onChanged: (value) {
+          setState(() {
+            country = value!;
+            user_country.text = country;
+            print(country);
+            print("user_country.text == ${user_country.text}");
+          });
+        },
 
+        title: Text(
+          "$country_name",
+          style: TextStyle(
+            fontSize: 15,
+          ),
+        ),
+        activeColor: Colors.green);
   }
 
-  Widget SoftCheck({String? soft_name, int? index})
-  {
+  Widget SoftCheck({String? soft_name, int? index}) {
     return CheckboxListTile(
       value: softselect[index!],
       onChanged: (value) {
@@ -405,65 +495,85 @@ class _ProfileState extends State<Profile> {
       }),
       activeColor: Colors.brown.shade500,
       checkColor: Colors.white,
-      title: Text("$soft_name",
-        style: TextStyle(fontSize: 20, color: Colors.white),),
+      title: Text(
+        "$soft_name",
+        style: TextStyle(fontSize: 20, color: Colors.white),
+      ),
     );
   }
 
   void showExitDialog() {
     showDialog(
       barrierDismissible: false,
-      context: context, builder: (context) {
-      return AlertDialog(title: Text("Are you wanted to Quit the Application"),
-        content: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-          ElevatedButton(onPressed: () {
-            SystemNavigator.pop();
-            //exit(0);
-          },
-            child: Text("Yes"), style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green),),
-          ElevatedButton(onPressed: () {
-            Navigator.pop(context);
-           },
-            child: Text("No"), style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.redAccent),),
-
-            ElevatedButton(onPressed: () {
-
-              var skills = "";
-              for(int i = 0 ; i<softselect.length ; i++)
-                {
-                  if(softselect[i] == true)
-                    {
-                      skills = "$skills  ${softSkill[i]}" ;
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Are you wanted to Quit the Application"),
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  SystemNavigator.pop();
+                  //exit(0);
+                },
+                child: Text("Yes"),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text("No"),
+                style:
+                    ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  for (int i = 0; i < softselect.length; i++) {
+                    if (softselect[i] == true) {
+                      softskills = "$softskills  ${softSkill[i]}";
                     }
-                }
-              Navigator.pop(context);
+                  }
 
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Column(mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text("Name = ${user_name.text} Address = ${user_address.text}"),
-                  Text("Contact = ${user_contact.text} Email = ${user_email.text}"),
-                  Text(" Nationality = $country"),
-                  Text("Education = $eduSel"),
-                  Text("Soft Skills = $skills")
-                ],
-              )));
-            },
-              child: Text("SnackBar View",style: TextStyle(fontSize: 15),), style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.amber),),
-        ],),);
-    },);
+                  for (int i = 0; i < techselect.length; i++) {
+                    if (techselect[i] == true) {
+                      techskills = "$techskills  ${techSkill[i]}";
+                    }
+                  }
+                  Navigator.pop(context);
+
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                          "Name = ${user_name.text} Address = ${user_address.text}"),
+                      Text(
+                          "Contact = ${user_contact.text} Email = ${user_email.text}"),
+                      Text(" Nationality = $country"),
+                      Text("Education = $eduSel"),
+                      Text("Soft Skills = $softskills")
+                    ],
+                  )));
+                },
+                child: Text(
+                  "SnackBar View",
+                  style: TextStyle(fontSize: 15),
+                ),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
-  Future<bool> back() async{
+  Future<bool> back() async {
     showExitDialog();
     return await false;
   }
-
-
 }
 
 // SnackBar WillPOPScope

@@ -7,10 +7,9 @@ void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     routes: {
-     // "/"       : (context) => HomeScreen(),
+      "/"       : (context) => HomeScreen(),
       "profile" : (context) => Profile(),
       "preview" : (context) => Preview_Screen(),
-      "/" : (context) => Preview_Screen(),
 
     },
   ));

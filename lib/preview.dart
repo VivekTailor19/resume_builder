@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resume_builder/resumeDataModal.dart';
 
 class Preview_Screen extends StatefulWidget {
   const Preview_Screen({Key? key}) : super(key: key);
@@ -10,39 +11,31 @@ class Preview_Screen extends StatefulWidget {
 class _Preview_ScreenState extends State<Preview_Screen> {
   @override
   Widget build(BuildContext context) {
+
+    ResumeModal rm = ModalRoute.of(context)!.settings.arguments as ResumeModal;
+
     return SafeArea(
       child: Scaffold(
         body: Container(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
             child: Column(
-             // mainAxisAlignment: MainAxisAlignment.center,
+              // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   "RESUME",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 35,
+                      fontSize: 30,
                       letterSpacing: 2),
                 ),
+                Divider(color: Colors.blue.shade50,thickness: 2),
                 Row(
                   children: [
-                    Container(
-                      height: 150,
-                      width: 150,
-                      child: Image.asset("assets/images/annoymous.jpg",
-                          fit: BoxFit.fill),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.blue,
-                              spreadRadius: 2,
-                              blurStyle: BlurStyle.outer,
-                              blurRadius: 2)
-                        ],
-                      ),
-                    ),
+                    CircleAvatar(radius: 75,
+                        backgroundImage: AssetImage(
+                            "assets/images/anonymous.jpg",
+                        )),
                     Container(
                       height: 150,
                       child: Padding(
@@ -50,56 +43,57 @@ class _Preview_ScreenState extends State<Preview_Screen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Name",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blue)),
-                            Text("Address", style: TextStyle(fontSize: 12)),
-                            Text(
-                              "Contact",
-                              style: TextStyle(fontSize: 12),
-                            ),
-                            Text("Email-ID",
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blue))
+                            Text("${rm.user_name}", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.blue)),
+                            Text("${rm.user_address}", style: TextStyle(fontSize: 12)),
+                            Text("${rm.user_contact}", style: TextStyle(fontSize: 12)),
+                            Text("${rm.user_email}", style:TextStyle(fontSize: 12,fontWeight: FontWeight.bold, color: Colors.blue))
                           ],
                         ),
                       ),
                     )
                   ],
                 ),
-                
+
                 TitleBox("Career Objective"),
-                Text("Career Object Information",textAlign: TextAlign.justify
-                ,style: TextStyle(fontSize: 12)),
+                Text("Career Object Information", textAlign: TextAlign.justify
+                    , style: TextStyle(fontSize: 12)),
 
                 TitleBox("Education Qualification"),
+                Text("${rm.user_education} ", textAlign: TextAlign.justify
+                    , style: TextStyle(fontSize: 12)),
+
                 TitleBox("Projects"),
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Project Title Name",textAlign: TextAlign.left
-                    ,style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)),
-                    Text("Explain Project in Details",textAlign: TextAlign.left
-                        ,style: TextStyle(fontSize: 12)),
+                    Text("${rm.user_project}", textAlign: TextAlign.left,
+                        style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
+                    Text("${rm.user_project_details}", textAlign: TextAlign.left
+                        , style: TextStyle(fontSize: 12)),
                   ],
                 ),
 
                 TitleBox("Training"),
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Institute Name",textAlign: TextAlign.left
-                        ,style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold)),
-                    Text("Enter Year ",textAlign: TextAlign.left
-                        ,style: TextStyle(fontSize: 13,fontWeight: FontWeight.bold))
+                    Text("Institute Name", textAlign: TextAlign.left,
+                        style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
+                    Text("Enter Year ", textAlign: TextAlign.left,
+                        style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold))
                   ],
                 ),
                 TitleBox("Technical Skills"),
+                Text("${rm.user_tech_skills}",style: TextStyle(fontSize: 12),),
+
                 TitleBox("Soft Skills"),
+                Text("${rm.user_soft_skills}",style: TextStyle(fontSize: 12),),
+
                 TitleBox("Declaration"),
-                Text("I hereby inform you all the statement made above are true, best of my knowledge and belief.")
+                Text("I hereby inform you all the statement made above are true, best of my knowledge and belief."),
+                Container(
+                  height: 20, alignment: Alignment.centerRight,
+                  child: Text("${rm.user_name}", style: TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 15)),
+                )
               ],
             ),
           ),
@@ -110,15 +104,16 @@ class _Preview_ScreenState extends State<Preview_Screen> {
 
   Widget TitleBox(String titlename) {
     return Padding(
-      padding:  EdgeInsets.symmetric(vertical: 8.0),
+      padding: EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
         height: 35,
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
             borderRadius:
-                BorderRadius.all(Radius.circular(5),),border: Border.all(width: 1)),
+            BorderRadius.all(Radius.circular(5),),
+            border: Border.all(width: 1)),
         child: Padding(
-          padding:EdgeInsets.symmetric(horizontal: 8.0),
+          padding: EdgeInsets.symmetric(horizontal: 8.0),
           child: Text("$titlename",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
         ),
