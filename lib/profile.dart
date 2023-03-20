@@ -54,7 +54,7 @@ class _ProfileState extends State<Profile> {
   String country = "Indian";
   String? countrySel;
 
-  ResumeModal rm = ResumeModal();
+  ResumeModal rm_old = ResumeModal();
 
   @override
   Widget build(BuildContext context) {
@@ -393,7 +393,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      rm = ResumeModal(
+                      rm_old = ResumeModal(
                           user_name: user_name.text,
                           user_address: user_address.text,
                           user_contact: user_contact.text,
@@ -403,7 +403,7 @@ class _ProfileState extends State<Profile> {
                           user_soft_skills: softskills,
                           user_project: user_project.text,
                           user_project_details: user_project_info.text);
-                      Navigator.pushNamed(context, "preview", arguments: rm);
+                      Navigator.pushNamed(context, "preview", arguments: rm_old);
                     },
                     child: Text(
                       "View Your Resume",

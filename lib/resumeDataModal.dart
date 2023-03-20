@@ -3,7 +3,8 @@ class ResumeModal
   String? user_name,user_address,user_contact,user_email,user_career,user_education,user_project,user_project_details;
   String? user_training_place,user_training_year,user_tech_skills,user_soft_skills;
 
-  ResumeModal({this.user_name,this.user_address,this.user_contact,this.user_email,this.user_career,this.user_education,this.user_project,this.user_project_details,this.user_training_place,this.user_training_year,this.user_tech_skills,this.user_soft_skills});
+  ResumeModal({this.user_name,this.user_address,this.user_contact,this.user_email,this.user_career,this.user_education,this.user_project,
+    this.user_project_details,this.user_training_place,this.user_training_year,this.user_tech_skills,this.user_soft_skills});
 }
 
 /*

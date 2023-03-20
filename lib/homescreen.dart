@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: GestureDetector(
             onTap: () {
               setState(() {
-                Navigator.pushNamed(context, "profile");
+                Navigator.pushNamed(context, "new_resume");
               });
             },
             child: Container(

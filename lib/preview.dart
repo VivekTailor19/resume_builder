@@ -14,6 +14,7 @@ class _Preview_ScreenState extends State<Preview_Screen> {
 
     ResumeModal rm = ModalRoute.of(context)!.settings.arguments as ResumeModal;
 
+
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -55,7 +56,7 @@ class _Preview_ScreenState extends State<Preview_Screen> {
                 ),
 
                 TitleBox("Career Objective"),
-                Text("Career Object Information", textAlign: TextAlign.justify
+                Text("${rm.user_career}", textAlign: TextAlign.justify
                     , style: TextStyle(fontSize: 12)),
 
                 TitleBox("Education Qualification"),
@@ -63,14 +64,11 @@ class _Preview_ScreenState extends State<Preview_Screen> {
                     , style: TextStyle(fontSize: 12)),
 
                 TitleBox("Projects"),
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
                     Text("${rm.user_project}", textAlign: TextAlign.left,
                         style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
                     Text("${rm.user_project_details}", textAlign: TextAlign.left
                         , style: TextStyle(fontSize: 12)),
-                  ],
-                ),
+
 
                 TitleBox("Training"),
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
