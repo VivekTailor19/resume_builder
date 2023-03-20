@@ -20,6 +20,9 @@ class _New_ResumeState extends State<New_Resume> {
   TextEditingController user_project = TextEditingController();
   TextEditingController user_project_info = TextEditingController();
 
+  TextEditingController user_traning= TextEditingController();
+  TextEditingController user_traning_year= TextEditingController();
+
   TextEditingController ref_name = TextEditingController();
   TextEditingController ref_job = TextEditingController();
   TextEditingController ref_company = TextEditingController();
@@ -236,6 +239,22 @@ class _New_ResumeState extends State<New_Resume> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: ExpansionTile(
+                  leading:
+                  Icon(Icons.model_training_rounded, size: 30,
+                      color: Colors.lightBlue),
+                  title: Text(
+                    "Traning",
+                    style: TextStyle(fontSize: 30,),
+                  ),
+                  trailing:Text(""),
+              ),
+            ),
+            Traning("Enter Traning Institute Name", user_traning),
+            Traning("Enter Traning Year", user_traning_year),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: ListTile(
                   leading:
                   Icon(Icons.workspace_premium_outlined, size: 30,
@@ -252,8 +271,8 @@ class _New_ResumeState extends State<New_Resume> {
                   }, activeColor: Colors.white,)
               ),
             ),
-            Project("Enter Project Name"),
-            Project("Enter Project in Details"),
+            Project("Enter Project Name",user_project),
+            Project("Enter Project in Details",user_project_info),
             ElevatedButton(onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Your Information Added Successfully"),
                 backgroundColor: Colors.green,));
@@ -281,6 +300,7 @@ class _New_ResumeState extends State<New_Resume> {
                   user_name: user_name.text, user_address: user_address.text,
                   user_email: user_email.text, user_contact: user_contact.text,
                   user_project: user_project.text,user_project_details: user_project_info.text,
+                  user_training_place: user_traning.text,user_training_year: user_traning_year.text,
                   user_education: eduSel,user_career: objective.text,
                   user_tech_skills: techskills, user_soft_skills: softskills,
                 );
@@ -288,28 +308,7 @@ class _New_ResumeState extends State<New_Resume> {
                 Navigator.pushNamed(context, "preview" , arguments: rm_new);
 
               });
-              for (int i = 0; i < softselect.length; i++) {
-                if (softselect[i] == true) {
-                  softskills = "$softskills  ${softSkill[i]}";
-                }
-              }
 
-              for (int i = 0; i < techselect.length; i++) {
-                if (techselect[i] == true) {
-                  techskills = "$techskills  ${techSkill[i]}";
-                }
-              }
-
-              rm_new = ResumeModal(
-
-                user_name: user_name.text, user_address: user_address.text,
-                user_email: user_email.text, user_contact: user_contact.text,
-                user_project: user_project.text,user_project_details: user_project_info.text,
-                user_education: "$eduSel in $stream",user_career: objective.text,
-                user_tech_skills: techskills, user_soft_skills: softskills,
-              );
-
-                Navigator.pushNamed(context, "preview" , arguments: rm_new);
 
             }, child: Text("View Your Resume",style: TextStyle(fontSize: 20),)),
 
@@ -460,12 +459,13 @@ class _New_ResumeState extends State<New_Resume> {
           )),
     );
   }
-  Widget Project(String hint)
+  Widget Project(String hint,TextEditingController data)
   {
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 8.0, top: 15),
       child: Visibility(visible: project,
         child: TextField(
+          controller: data,
             style: TextStyle(color: Colors.black),
             decoration: InputDecoration(
               focusedBorder: OutlineInputBorder(
@@ -479,6 +479,26 @@ class _New_ResumeState extends State<New_Resume> {
               "$hint",
             )),
       ),
+    );
+  }
+  Widget Traning(String hint,TextEditingController data)
+  {
+    return Padding(
+      padding: EdgeInsets.only(left: 8, right: 8.0, top: 15),
+      child: TextField(
+          controller: data,
+          style: TextStyle(color: Colors.black),
+          decoration: InputDecoration(
+            focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.lightBlueAccent.shade100,
+                    width: 2)),
+            border: OutlineInputBorder(),
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.lightBlue,
+                    width: 2)),
+            hintText:
+            "$hint",
+          )),
     );
   }
 

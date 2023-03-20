@@ -21,7 +21,7 @@ class _Preview_ScreenState extends State<Preview_Screen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8),
             child: Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "RESUME",
@@ -73,9 +73,9 @@ class _Preview_ScreenState extends State<Preview_Screen> {
                 TitleBox("Training"),
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Institute Name", textAlign: TextAlign.left,
+                    Text("${rm.user_training_place}", textAlign: TextAlign.left,
                         style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)),
-                    Text("Enter Year ", textAlign: TextAlign.left,
+                    Text("${rm.user_training_year}", textAlign: TextAlign.left,
                         style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold))
                   ],
                 ),
