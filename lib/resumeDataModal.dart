@@ -1,19 +1,21 @@
 class ResumeModal
 {
-  String? user_name,user_address,user_contact,user_email,user_career,user_education,user_project,user_project_details;
-  String? user_training_place,user_training_year,user_tech_skills,user_soft_skills;
+  String? u_name,u_address,u_contact,u_email,u_career,u_education,u_project,u_project_details;
+  String? u_training_place,u_training_year,u_tech_skills,u_soft_skills;
+  String? u_ref,u_refcompany,u_refjob,u_refemail;
 
-  ResumeModal({this.user_name,this.user_address,this.user_contact,this.user_email,this.user_career,this.user_education,this.user_project,
-    this.user_project_details,this.user_training_place,this.user_training_year,this.user_tech_skills,this.user_soft_skills});
+  ResumeModal({this.u_name,this.u_address,this.u_contact,this.u_email,this.u_career,this.u_education,this.u_project,
+    this.u_project_details,this.u_training_place,this.u_training_year,this.u_tech_skills,this.u_soft_skills,
+    this.u_ref,this.u_refcompany,this.u_refjob,this.u_refemail});
 }
 
 /*
 
 
-  TextEditingController user_name = TextEditingController();
-  TextEditingController user_address = TextEditingController();
-  TextEditingController user_email = TextEditingController();
-  TextEditingController user_contact = TextEditingController();
+  TextEditingController u_name = TextEditingController();
+  TextEditingController u_address = TextEditingController();
+  TextEditingController u_email = TextEditingController();
+  TextEditingController u_contact = TextEditingController();
   List edu = ["B.E.", "M.B.B.S", "Ph.D", "SSC", "HSC", "B.Sc"];
   String? eduSel;
   List techSkill = [ "Basic Programming", "Web Designing", "Network Security",  "Mobile Developing","Database"]

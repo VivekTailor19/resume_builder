@@ -10,13 +10,13 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  TextEditingController user_name = TextEditingController();
-  TextEditingController user_address = TextEditingController();
-  TextEditingController user_email = TextEditingController();
-  TextEditingController user_contact = TextEditingController();
-  TextEditingController user_country = TextEditingController();
-  TextEditingController user_project = TextEditingController();
-  TextEditingController user_project_info = TextEditingController();
+  TextEditingController u_name = TextEditingController();
+  TextEditingController u_address = TextEditingController();
+  TextEditingController u_email = TextEditingController();
+  TextEditingController u_contact = TextEditingController();
+  TextEditingController u_country = TextEditingController();
+  TextEditingController u_project = TextEditingController();
+  TextEditingController u_project_info = TextEditingController();
 
   List edu = ["B.E.", "M.B.B.S", "Ph.D", "SSC", "HSC", "B.Sc"];
   String? eduSel;
@@ -109,7 +109,7 @@ class _ProfileState extends State<Profile> {
               children: [
                 ExpansionTile(
                   leading:
-                      Icon(Icons.person_outline, size: 30, color: Colors.white),
+                  Icon(Icons.person_outline, size: 30, color: Colors.white),
                   title: Text(
                     "Personal Information",
                     style: TextStyle(fontSize: 30, color: Colors.white),
@@ -120,10 +120,10 @@ class _ProfileState extends State<Profile> {
                     color: Colors.white,
                   ),
                   children: [
-                    Personal("Enter Full Name", user_name),
-                    Personal("Enter Address", user_address),
-                    Personal("Enter Email Id", user_email),
-                    Personal("Enter Contact No", user_contact),
+                    Personal("Enter Full Name", u_name),
+                    Personal("Enter Address", u_address),
+                    Personal("Enter Email Id", u_email),
+                    Personal("Enter Contact No", u_contact),
                     Padding(
                       padding: EdgeInsets.only(left: 8, right: 8.0, top: 15),
                       child: Container(
@@ -176,14 +176,14 @@ class _ProfileState extends State<Profile> {
                     isExpanded: true,
                     items: edu
                         .map((e) => DropdownMenuItem(
-                              child: Text("$e",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold)),
-                              value: e,
-                              alignment: Alignment.center,
-                            ))
+                      child: Text("$e",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold)),
+                      value: e,
+                      alignment: Alignment.center,
+                    ))
                         .toList(),
                     value: eduSel,
                     //alignment: Alignment.center,
@@ -219,15 +219,15 @@ class _ProfileState extends State<Profile> {
                     },
                     child: demo == false
                         ? Icon(
-                            Icons.arrow_drop_down,
-                            size: 30,
-                            color: Colors.white,
-                          )
+                      Icons.arrow_drop_down,
+                      size: 30,
+                      color: Colors.white,
+                    )
                         : Icon(
-                            Icons.arrow_drop_up,
-                            size: 30,
-                            color: Colors.white,
-                          ),
+                      Icons.arrow_drop_up,
+                      size: 30,
+                      color: Colors.white,
+                    ),
                   ),
                   children: [
                     Visibility(
@@ -246,7 +246,7 @@ class _ProfileState extends State<Profile> {
                             title: Text(
                               "${techSkill[0]}",
                               style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
+                              TextStyle(fontSize: 20, color: Colors.white),
                             ),
                           ),
                           CheckboxListTile(
@@ -261,7 +261,7 @@ class _ProfileState extends State<Profile> {
                             title: Text(
                               "${techSkill[1]}",
                               style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
+                              TextStyle(fontSize: 20, color: Colors.white),
                             ),
                           ),
                           CheckboxListTile(
@@ -276,7 +276,7 @@ class _ProfileState extends State<Profile> {
                             title: Text(
                               "${techSkill[2]}",
                               style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
+                              TextStyle(fontSize: 20, color: Colors.white),
                             ),
                           ),
                           CheckboxListTile(
@@ -294,7 +294,7 @@ class _ProfileState extends State<Profile> {
                             title: Text(
                               "${techSkill[3]}",
                               style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
+                              TextStyle(fontSize: 20, color: Colors.white),
                             ),
                           ),
                           CheckboxListTile(
@@ -309,7 +309,7 @@ class _ProfileState extends State<Profile> {
                             title: Text(
                               "${techSkill[4]}",
                               style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
+                              TextStyle(fontSize: 20, color: Colors.white),
                             ),
                           ),
                         ],
@@ -334,8 +334,8 @@ class _ProfileState extends State<Profile> {
                       },
                       activeColor: Colors.white,
                     )),
-                Project("Enter Project Name", user_project),
-                Project("Enter Project in Details", user_project_info),
+                Project("Enter Project Name", u_project),
+                Project("Enter Project in Details", u_project_info),
                 SizedBox(height: 10),
                 ExpansionTile(
                   leading: Icon(Icons.event_available,
@@ -349,7 +349,7 @@ class _ProfileState extends State<Profile> {
                       .asMap()
                       .entries
                       .map((e) =>
-                          SoftCheck(soft_name: softSkill[e.key], index: e.key))
+                      SoftCheck(soft_name: softSkill[e.key], index: e.key))
                       .toList(),
 
                   // [SoftCheck("Public Speaking"),SoftCheck("Time Management"), SoftCheck("Critical Thinking"),SoftCheck("Leadership"), SoftCheck("PowerFull")],
@@ -394,15 +394,15 @@ class _ProfileState extends State<Profile> {
                 ElevatedButton(
                     onPressed: () {
                       rm_old = ResumeModal(
-                          user_name: user_name.text,
-                          user_address: user_address.text,
-                          user_contact: user_contact.text,
-                          user_email: user_email.text,
-                          user_education: eduSel,
-                          user_tech_skills: techskills,
-                          user_soft_skills: softskills,
-                          user_project: user_project.text,
-                          user_project_details: user_project_info.text);
+                          u_name: u_name.text,
+                          u_address: u_address.text,
+                          u_contact: u_contact.text,
+                          u_email: u_email.text,
+                          u_education: eduSel,
+                          u_tech_skills: techskills,
+                          u_soft_skills: softskills,
+                          u_project: u_project.text,
+                          u_project_details: u_project_info.text);
                       Navigator.pushNamed(context, "preview", arguments: rm_old);
                     },
                     child: Text(
@@ -467,9 +467,9 @@ class _ProfileState extends State<Profile> {
         onChanged: (value) {
           setState(() {
             country = value!;
-            user_country.text = country;
+            u_country.text = country;
             print(country);
-            print("user_country.text == ${user_country.text}");
+            print("u_country.text == ${u_country.text}");
           });
         },
 
@@ -526,7 +526,7 @@ class _ProfileState extends State<Profile> {
                 },
                 child: Text("No"),
                 style:
-                    ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
+                ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
               ),
               ElevatedButton(
                 onPressed: () {
@@ -545,17 +545,17 @@ class _ProfileState extends State<Profile> {
 
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                          "Name = ${user_name.text} Address = ${user_address.text}"),
-                      Text(
-                          "Contact = ${user_contact.text} Email = ${user_email.text}"),
-                      Text(" Nationality = $country"),
-                      Text("Education = $eduSel"),
-                      Text("Soft Skills = $softskills")
-                    ],
-                  )));
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                              "Name = ${u_name.text} Address = ${u_address.text}"),
+                          Text(
+                              "Contact = ${u_contact.text} Email = ${u_email.text}"),
+                          Text(" Nationality = $country"),
+                          Text("Education = $eduSel"),
+                          Text("Soft Skills = $softskills")
+                        ],
+                      )));
                 },
                 child: Text(
                   "SnackBar View",
