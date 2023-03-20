@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:resume_builder/resumeDataModal.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+class Old_Resume extends StatefulWidget {
+  const Old_Resume({Key? key}) : super(key: key);
 
   @override
-  State<Profile> createState() => _ProfileState();
+  State<Old_Resume> createState() => _Old_ResumeState();
 }
 
-class _ProfileState extends State<Profile> {
+class _Old_ResumeState extends State<Old_Resume> {
+
+
   TextEditingController u_name = TextEditingController();
   TextEditingController u_address = TextEditingController();
   TextEditingController u_email = TextEditingController();
@@ -55,6 +57,8 @@ class _ProfileState extends State<Profile> {
   String? countrySel;
 
   ResumeModal rm_old = ResumeModal();
+
+
 
   @override
   Widget build(BuildContext context) {
