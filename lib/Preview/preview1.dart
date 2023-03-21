@@ -14,7 +14,6 @@ class _Preview_ScreenState extends State<Preview_Screen> {
 
     ResumeModal rm = ModalRoute.of(context)!.settings.arguments as ResumeModal;
 
-
     return SafeArea(
       child: Scaffold(
         body: Container(
