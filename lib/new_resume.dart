@@ -317,8 +317,10 @@ class _New_ResumeState extends State<New_Resume> {
                         );
 
                       });
+                      txtkey.currentState?.reset();
 
                     }
+
                   }, child: Text("Submit",style: TextStyle(fontSize: 20),)),
 
                   SizedBox(height: 15),
@@ -450,7 +452,6 @@ class _New_ResumeState extends State<New_Resume> {
       ),
     );
   }
-
   Widget NationalityRadio(String country_name)
   {
     return RadioListTile(value: "$country_name", groupValue: country, onChanged: (value) {
@@ -461,7 +462,6 @@ class _New_ResumeState extends State<New_Resume> {
       title: Text("$country_name",style: TextStyle(fontSize: 15)),);
 
   }
-
   Widget Exp_Type(String type_name)
   {
     return RadioListTile(value: "$type_name", groupValue: exp, onChanged: (value) {
@@ -471,7 +471,6 @@ class _New_ResumeState extends State<New_Resume> {
       });},
       title: Text("$type_name",style: TextStyle(fontSize: 15)),);
   }
-
   Widget SoftCheck({String? soft_name, int? soft_index})
   {
     return CheckboxListTile(
@@ -498,7 +497,6 @@ class _New_ResumeState extends State<New_Resume> {
         style: TextStyle(fontSize: 20,),),
     );
   }
-
   Widget Reference({ String? labelname, TextEditingController? data,TextInputType? kboard})
   {
     return Padding(
