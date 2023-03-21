@@ -37,7 +37,7 @@ class _Preview_ScreenState extends State<Preview_Screen> {
                   children: [
                     CircleAvatar(radius: 75,
                         backgroundImage: AssetImage(
-                          "assets/images/anonymous.jpg",
+                          "${rm.u_path}",
                         )),
                     Container(
                       height: 150,

@@ -1,5 +1,10 @@
+
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'resumeDataModal.dart';
 
@@ -61,6 +66,7 @@ class _New_ResumeState extends State<New_Resume> {
   ResumeModal rm_new = ResumeModal();
 
   int submit = 0;
+  String path = "" ;
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +94,44 @@ class _New_ResumeState extends State<New_Resume> {
                       trailing: Text(""),
 
                       children: [
+
+                        Row(
+                          children: [
+                            path==null ? CircleAvatar(radius: 60,backgroundImage: AssetImage("assets/images/anonymous.jpg")) : CircleAvatar(radius: 80,backgroundImage: FileImage(File("$path")),),
+                            Container(
+                              height: 60,
+                              child: Padding(
+                                padding: EdgeInsets.only(left: 15.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    InkWell(onTap: () async {
+                                      ImagePicker pic = ImagePicker();
+                                      XFile? xfile = await pic.pickImage(source: ImageSource.camera);
+
+                                      setState(() {
+                                        path = xfile!.path;
+                                      });
+                                    },
+                                        child: Row(children: [Icon(Icons.camera_alt_outlined,size: 25),SizedBox(width: 10),Text("Capture"),] )),
+                                    InkWell(
+                                        onTap: () async {
+                                      ImagePicker pic = ImagePicker();
+                                      XFile? xfile = await pic.pickImage(source: ImageSource.gallery);
+
+                                      setState(() {
+                                        path = xfile!.path;
+                                      });
+                                    },
+                                        child: Row(children: [Icon(Icons.file_upload_outlined,size: 25),SizedBox(width: 10),Text("Upload Image"),] )),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+
                         PersonalDetails(title: "Name", hintname: "Your Full Name",data: u_name,validation: "Name",kboard: TextInputType.name),
                         PersonalDetails(title: "Address", hintname: "Main Road, Surat",data: u_address,kboard: TextInputType.streetAddress),
                         PersonalDetails(title: "Email", hintname: "myresume@gmail.com",data: u_email,validation:"Email",kboard: TextInputType.emailAddress),
@@ -313,7 +357,9 @@ class _New_ResumeState extends State<New_Resume> {
                           u_training_place: u_training.text,u_training_year: u_training_year.text,
                           u_education: education,u_career: objective.text,
                           u_tech_skills: techskills, u_soft_skills: softskills,
-                          u_ref: ref_name.text,u_refjob: ref_job.text,u_refcompany: ref_company.text,u_refemail: ref_email.text
+                          u_ref: ref_name.text,u_refjob: ref_job.text,u_refcompany: ref_company.text,
+                            u_refemail: ref_email.text,
+                          u_path: path
                         );
 
                       });
