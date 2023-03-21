@@ -91,14 +91,14 @@ class _Preview_ScreenState extends State<Preview_Screen> {
                 TitleBox("References"),
                 Row(mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(width: 40,alignment:Alignment.centerLeft,child: Text("${rm.u_ref}  ==  ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)),
-                    Container(width: 40,alignment:Alignment.centerLeft,child: Text("${rm.u_refjob}  ==  ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)),
+                    Container(width: 180,alignment:Alignment.centerLeft,child: Text("${rm.u_ref}    ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)),
+                    Container(width: 180,alignment:Alignment.centerLeft,child: Text("${rm.u_refjob}    ",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)),
                   ],
                 ),
                 Row(mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(width: 30,alignment:Alignment.centerLeft,child: Text("${rm.u_refcompany}",style: TextStyle(fontSize: 13),)),
-                    Container(width: 30,alignment:Alignment.centerLeft,child: Text("${rm.u_refemail}",style: TextStyle(fontSize: 13),)),
+                    Container(width: 180,alignment:Alignment.centerLeft,child: Text("${rm.u_refcompany}",style: TextStyle(fontSize: 13),)),
+                    Container(width: 180,alignment:Alignment.centerLeft,child: Text("${rm.u_refemail}",style: TextStyle(fontSize: 13),)),
                   ],
                 ),
 
