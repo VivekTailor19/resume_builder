@@ -67,6 +67,7 @@ class _New_ResumeState extends State<New_Resume> {
 
   int submit = 0;
   String path = "" ;
+  RangeValues rangevalues = RangeValues(10000, 250000);
 
   @override
   Widget build(BuildContext context) {
@@ -97,6 +98,7 @@ class _New_ResumeState extends State<New_Resume> {
 
                         Row(
                           children: [
+
                             path==null ? CircleAvatar(radius: 60,backgroundImage: AssetImage("assets/images/anonymous.jpg")) : CircleAvatar(radius: 80,backgroundImage: FileImage(File("$path")),),
                             Container(
                               height: 60,
@@ -360,7 +362,7 @@ class _New_ResumeState extends State<New_Resume> {
                           u_education: education,u_career: objective.text,
                           u_tech_skills: techskills, u_soft_skills: softskills,
                           u_ref: ref_name.text,u_refjob: ref_job.text,u_refcompany: ref_company.text,
-                            u_refemail: ref_email.text, u_path: path,u_skill: skill
+                            u_refemail: ref_email.text, u_path: path,u_skill: skill,rangevalue: rangevalues
                         );
 
                       });
@@ -370,6 +372,22 @@ class _New_ResumeState extends State<New_Resume> {
                     }
 
                   }, child: Text("Submit",style: TextStyle(fontSize: 20),)),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: ExpansionTile(
+                      leading: Icon(Icons.date_range, size: 30, color: Colors.lightBlue),
+                      title: Text("Expected Salary", style: TextStyle(fontSize: 30,),),
+                      trailing: Text(""),
+                      children: [
+                        RangeSlider(values: rangevalues,labels: RangeLabels("${rangevalues.start.round()}","${rangevalues.end.round()}"), onChanged: (value) {
+                          setState(() {
+                            rangevalues = value;
+                          });
+
+                        },max: 300000,divisions: 25,)
+                      ],
+                    ),
+                  ),
 
                   SizedBox(height: 15),
 
