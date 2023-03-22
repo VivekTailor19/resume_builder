@@ -15,56 +15,67 @@ class _Preview_02State extends State<Preview_02> {
         body: Row(
           children: [
             Container(width: 180,color: Colors.teal,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(height: 100,width: 100,
-                      decoration: BoxDecoration(shape: BoxShape.circle,border: Border.all(color: Colors.white,width: 2)),
-                      child: CircleAvatar(radius: 50,backgroundImage: AssetImage("assets/images/anonymous.jpg"),)),
-                  SizedBox(height: 15),
 
-                  Column(children :[
-                    Text("CONTACT",style: TextStyle(wordSpacing: 3,color: Colors.white,fontSize: 20),),
-                    Container(height: 2,width: 90,color: Colors.white,),
-                    SizedBox(height: 10),],),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(height: 100,width: 100,
+                        decoration: BoxDecoration(shape: BoxShape.circle,border: Border.all(color: Colors.white,width: 2)),
+                        child: CircleAvatar(radius: 50,backgroundImage: AssetImage("assets/images/anonymous.jpg"),)),
+                    SizedBox(height: 15),
+
+                    Column(children :[
+                      Text("CONTACT",style: TextStyle(wordSpacing: 3,color: Colors.white,fontSize: 20),),
+                      Container(height: 2,width: 90,color: Colors.white,),
+                      SizedBox(height: 10),],),
 
 
-                  Contact(i1: Icon(Icons.location_on_outlined,size: 12,color: Colors.white),data: "address"),
-                  Contact(i1: Icon(Icons.phone,size: 12,color: Colors.white),data: "+91 phone"),
-                  Contact(i1: Icon(Icons.email_outlined,size: 12,color: Colors.white),data: "email-id"),
+                    Contact(i1: Icon(Icons.location_on_outlined,size: 12,color: Colors.white),data: "address"),
+                    Contact(i1: Icon(Icons.phone,size: 12,color: Colors.white),data: "+91 phone"),
+                    Contact(i1: Icon(Icons.email_outlined,size: 12,color: Colors.white),data: "email-id"),
 
-                  SizedBox(height: 15),
-                  Text("EDUCATION",style: TextStyle(wordSpacing: 3,color: Colors.white,fontSize: 20),),
-                  Container(height: 2,width: 110,color: Colors.white,),
-                  SizedBox(height: 10),
-                  Text("Master Degree  &   Year",style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold,fontSize: 13,),),
-                  Text("University Name",style: TextStyle(color:Colors.white, fontSize: 12,),),
-                  Text("Bachalor Degree  &   Year",style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold,fontSize: 13,),),
-                  Text("University Name",style: TextStyle(color:Colors.white, fontSize: 12,),),
-                  Text("HSC  &   Year",style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold,fontSize: 13,),),
-                  Text("School Name",style: TextStyle(color:Colors.white, fontSize: 12,),),
+                    SizedBox(height: 15),
 
-                  Column( mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
+                    Column(children :[
+                      Text("EDUCATION",style: TextStyle(wordSpacing: 3,color: Colors.white,fontSize: 20),),
+                      Container(height: 2,width: 90,color: Colors.white,),
+                      SizedBox(height: 10),],),
+                    SizedBox(height: 10),
+                    Text("Master Degree  &   Year",style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold,fontSize: 13,),),
+                    Text("University Name",style: TextStyle(color:Colors.white, fontSize: 12,),),
+                    Text("Bachalor Degree  &   Year",style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold,fontSize: 13,),),
+                    Text("University Name",style: TextStyle(color:Colors.white, fontSize: 12,),),
+                    Text("HSC  &   Year",style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold,fontSize: 13,),),
+                    Text("School Name",style: TextStyle(color:Colors.white, fontSize: 12,),),
+                    SizedBox(height: 20),
+
+                    Column(children :[
                       Text("REFERENCE",style: TextStyle(wordSpacing: 3,color: Colors.white,fontSize: 20),),
-                      Container(height: 2,width: 110,color: Colors.white,)
-                    ],
-                  ),
-                  Text("Refee Name",style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold,fontSize: 13,),),
-                  Text("School Name",style: TextStyle(color:Colors.white, fontSize: 12,),),
-                  SizedBox(height: 5),
-                  Text("Email :   EMail ID",style: TextStyle(color:Colors.white, fontSize: 12,),),
-                  Text("Contact :  +91 Contact Number",style: TextStyle(color:Colors.white, fontSize: 12,),),
+                      Container(height: 2,width: 90,color: Colors.white,),
+                      SizedBox(height: 10),],),
+                    SizedBox(height: 10),
+                    Column(
+                        children: [
+                      Text("Refee Name",style: TextStyle(color:Colors.white, fontWeight: FontWeight.bold,fontSize: 13,),),
+                      Text("School Name",style: TextStyle(color:Colors.white, fontSize: 12,),),
+                      SizedBox(height: 5),
+                      Text("Email :   EMail ID",style: TextStyle(color:Colors.white, fontSize: 12,),),
+                      Text("Contact :  +91 Contact Number",style: TextStyle(color:Colors.white, fontSize: 12,),),
+                    ]),
 
 
 
 
-                  //CircleAvatar Photo
-                  //Contact(),
-                  //Education(),
-                  //Reference(),
-                ],
+
+                    //CircleAvatar Photo
+                    //Contact(),
+                    //Education(),
+                    //Reference(),
+                  ],
+                ),
               ),),
 
 
@@ -128,19 +139,16 @@ class _Preview_02State extends State<Preview_02> {
 
   Widget Contact({Icon? i1, String? data})
   {
-    return Padding(
-      padding: const EdgeInsets.only(left: 35.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          //Icon(icoon,size: 12,),
-          Container(alignment: Alignment.centerRight,width: 20,child: i1!),
-          SizedBox(width: 15),
-          Container(alignment: Alignment.centerLeft,width: 110,child: Text("$data",
-            style: TextStyle(fontSize: 12,color: Colors.white),textAlign: TextAlign.justify,)),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        //Icon(icoon,size: 12,),
+        Container(alignment: Alignment.centerRight,width: 20,child: i1!),
+        SizedBox(width: 15),
+        Container(alignment: Alignment.centerLeft,width: 110,child: Text("$data",
+          style: TextStyle(fontSize: 12,color: Colors.white),textAlign: TextAlign.justify,)),
 
-        ],
-      ),
+      ],
     );
   }
 

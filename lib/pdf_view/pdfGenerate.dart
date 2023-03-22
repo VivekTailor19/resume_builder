@@ -20,7 +20,7 @@ async {
     )
   );
 
-  Directory? directory = await getTemporaryDirectory();
+  Directory? directory = await getApplicationSupportDirectory();
   File file = File("${directory!.path}/flutter.pdf");
   print("${directory!.path}/flutter.pdf");
   await file.writeAsBytes(await pdf.save());

@@ -329,6 +329,24 @@ class _New_ResumeState extends State<New_Resume> {
                   ),
                   Project(hint: "Enter Project Name",data: u_project),
                   Project(hint: "Enter Project in Details",data: u_project_info),
+
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: ExpansionTile(
+                      leading: Icon(Icons.date_range, size: 30, color: Colors.lightBlue),
+                      title: Text("Expected Salary", style: TextStyle(fontSize: 30,),),
+                      trailing: Text(""),
+                      children: [
+                        RangeSlider(values: rangevalues,labels: RangeLabels("${rangevalues.start.round()}","${rangevalues.end.round()}"), onChanged: (value) {
+                          setState(() {
+                            rangevalues = value;
+                          });
+
+                        },max: 300000,divisions: 25,)
+                      ],
+                    ),
+                  ),
+
                   ElevatedButton(onPressed: () {
                     var softskills = "";
                     var techskills = "";
@@ -372,22 +390,7 @@ class _New_ResumeState extends State<New_Resume> {
                     }
 
                   }, child: Text("Submit",style: TextStyle(fontSize: 20),)),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.0),
-                    child: ExpansionTile(
-                      leading: Icon(Icons.date_range, size: 30, color: Colors.lightBlue),
-                      title: Text("Expected Salary", style: TextStyle(fontSize: 30,),),
-                      trailing: Text(""),
-                      children: [
-                        RangeSlider(values: rangevalues,labels: RangeLabels("${rangevalues.start.round()}","${rangevalues.end.round()}"), onChanged: (value) {
-                          setState(() {
-                            rangevalues = value;
-                          });
 
-                        },max: 300000,divisions: 25,)
-                      ],
-                    ),
-                  ),
 
                   SizedBox(height: 15),
 
@@ -397,6 +400,8 @@ class _New_ResumeState extends State<New_Resume> {
 
                     }, child: Text("View Your Resume",style: TextStyle(fontSize: 20),)),
                   ),
+
+                  SizedBox(height: 25),
 
                 ],
               ),
