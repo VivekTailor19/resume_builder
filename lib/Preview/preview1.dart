@@ -29,7 +29,7 @@ class _Preview_ScreenState extends State<Preview_Screen> {
                     "RESUME",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 30,
+                        fontSize: 26,
                         letterSpacing: 2),
                   ),
                 ),
