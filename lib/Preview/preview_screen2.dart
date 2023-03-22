@@ -16,17 +16,19 @@ class _Preview_02State extends State<Preview_02> {
           children: [
             Container(width: 180,color: Colors.teal,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(height: 100,width: 100,
                       decoration: BoxDecoration(shape: BoxShape.circle,border: Border.all(color: Colors.white,width: 2)),
                       child: CircleAvatar(radius: 50,backgroundImage: AssetImage("assets/images/anonymous.jpg"),)),
                   SizedBox(height: 15),
 
-                  Text("CONTACT",style: TextStyle(wordSpacing: 3,color: Colors.white,fontSize: 20),),
-                  Container(height: 2,width: 90,color: Colors.white,),
-                  SizedBox(height: 10),
+                  Column(children :[
+                    Text("CONTACT",style: TextStyle(wordSpacing: 3,color: Colors.white,fontSize: 20),),
+                    Container(height: 2,width: 90,color: Colors.white,),
+                    SizedBox(height: 10),],),
+
 
                   Contact(i1: Icon(Icons.location_on_outlined,size: 12,color: Colors.white),data: "address"),
                   Contact(i1: Icon(Icons.phone,size: 12,color: Colors.white),data: "+91 phone"),

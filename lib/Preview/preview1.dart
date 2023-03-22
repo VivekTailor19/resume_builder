@@ -110,6 +110,13 @@ class _Preview_ScreenState extends State<Preview_Screen> {
                   "${rm.u_tech_skills}",
                   style: TextStyle(fontSize: 12),
                 ),
+                TitleBox("Skills"),
+                Column(crossAxisAlignment: CrossAxisAlignment.start,
+                    children:
+                rm.u_skill!.map((e) => lakhan(e)).toList()
+                ),
+
+
                 TitleBox("Soft Skills"),
                 Text(
                   "${rm.u_soft_skills}",
@@ -192,5 +199,10 @@ class _Preview_ScreenState extends State<Preview_Screen> {
         ),
       ),
     );
+  }
+
+  Widget lakhan(String sk)
+  {
+    return Text("₹ $sk");
   }
 }

@@ -330,6 +330,7 @@ class _New_ResumeState extends State<New_Resume> {
                   ElevatedButton(onPressed: () {
                     var softskills = "";
                     var techskills = "";
+                    List skill  = [];
 
                     submit = 1;
                     if(txtkey.currentState!.validate()){
@@ -341,8 +342,10 @@ class _New_ResumeState extends State<New_Resume> {
                         for (int i = 0; i < softselect.length; i++) {
                           if (softselect[i] == true) {
                             softskills = "$softskills  ${softSkill[i]}";
+                            skill.add(softSkill[i]);
                           }
                         }
+
 
                         for (int i = 0; i < techselect.length; i++) {
                           if (techselect[i] == true) {
@@ -357,11 +360,12 @@ class _New_ResumeState extends State<New_Resume> {
                           u_education: education,u_career: objective.text,
                           u_tech_skills: techskills, u_soft_skills: softskills,
                           u_ref: ref_name.text,u_refjob: ref_job.text,u_refcompany: ref_company.text,
-                            u_refemail: ref_email.text, u_path: path
+                            u_refemail: ref_email.text, u_path: path,u_skill: skill
                         );
 
                       });
-                      txtkey.currentState?.reset();
+                      // txtkey.currentState?.reset();
+                      print(skill);
 
                     }
 
