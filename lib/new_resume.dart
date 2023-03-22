@@ -258,7 +258,6 @@ class _New_ResumeState extends State<New_Resume> {
                       leading: Icon(Icons.rocket_launch_rounded, size: 30, color: Colors.lightBlue),
                       title: Text("Objective", style: TextStyle(fontSize: 30,),),
                       trailing: Text(""),
-
                       children: [
                         TextField(
                             controller: objective,
@@ -358,8 +357,7 @@ class _New_ResumeState extends State<New_Resume> {
                           u_education: education,u_career: objective.text,
                           u_tech_skills: techskills, u_soft_skills: softskills,
                           u_ref: ref_name.text,u_refjob: ref_job.text,u_refcompany: ref_company.text,
-                            u_refemail: ref_email.text,
-                          u_path: path
+                            u_refemail: ref_email.text, u_path: path
                         );
 
                       });
@@ -431,7 +429,7 @@ class _New_ResumeState extends State<New_Resume> {
         //mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children : [
-          Text("$title",style: TextStyle(fontSize: 25),),
+          Text("$title",style: TextStyle(fontSize: 22),),
           TextFormField(
               controller: data,
               validator: (value) {
@@ -505,7 +503,7 @@ class _New_ResumeState extends State<New_Resume> {
         country = value!;
         print(country);
       });},
-      title: Text("$country_name",style: TextStyle(fontSize: 15)),);
+      title: Text("$country_name",style: TextStyle(fontSize: 13)),);
 
   }
   Widget Exp_Type(String type_name)
@@ -515,7 +513,7 @@ class _New_ResumeState extends State<New_Resume> {
         exp = value!;
         print(exp);
       });},
-      title: Text("$type_name",style: TextStyle(fontSize: 15)),);
+      title: Text("$type_name",style: TextStyle(fontSize: 13)),);
   }
   Widget SoftCheck({String? soft_name, int? soft_index})
   {
@@ -527,7 +525,7 @@ class _New_ResumeState extends State<New_Resume> {
         });
       },
       title: Text("$soft_name",
-        style: TextStyle(fontSize: 20,),),
+        style: TextStyle(fontSize: 18,),),
     );
   }
   Widget TechCheck({String? tech_name, int? tech_index})
@@ -540,7 +538,7 @@ class _New_ResumeState extends State<New_Resume> {
         });
       },
       title: Text("$tech_name",
-        style: TextStyle(fontSize: 20,),),
+        style: TextStyle(fontSize: 18,),),
     );
   }
   Widget Reference({ String? labelname, TextEditingController? data,TextInputType? kboard})
@@ -561,7 +559,7 @@ class _New_ResumeState extends State<New_Resume> {
                 borderSide: BorderSide(color: Colors.black12,
                     width: 2)),
             label: Text("$labelname"),
-            labelStyle: TextStyle(color: Colors.lightBlueAccent.shade100,fontSize: 20),
+            labelStyle: TextStyle(color: Colors.lightBlueAccent.shade100,fontSize: 18),
 
           )),
     );

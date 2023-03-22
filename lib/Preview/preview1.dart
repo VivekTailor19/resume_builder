@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:resume_builder/resumeDataModal.dart';
 
@@ -35,8 +37,7 @@ class _Preview_ScreenState extends State<Preview_Screen> {
                 Row(
                   children: [
                     CircleAvatar(radius: 75,
-                        backgroundImage: AssetImage(
-                          "${rm.u_path}",
+                        backgroundImage: FileImage(File("${rm.u_path}"),
                         )),
                     Container(
                       height: 150,
@@ -46,7 +47,7 @@ class _Preview_ScreenState extends State<Preview_Screen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("${rm.u_name}", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.blue)),
+                            Text("${rm.u_name}", style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold, color: Colors.blue)),
                             Text("${rm.u_address}", style: TextStyle(fontSize: 12)),
                             Text("${rm.u_contact}", style: TextStyle(fontSize: 12)),
                             Text("${rm.u_email}", style:TextStyle(fontSize: 12,fontWeight: FontWeight.bold, color: Colors.blue))
@@ -106,7 +107,7 @@ class _Preview_ScreenState extends State<Preview_Screen> {
                 TitleBox("Declaration"),
                 Text("I hereby inform you all the statement made above are true, best of my knowledge and belief."),
                 Container(
-                  height: 20, alignment: Alignment.centerRight,
+                  height: 15, alignment: Alignment.centerRight,
                   child: Text("${rm.u_name}", style: TextStyle(
                       fontWeight: FontWeight.bold, fontSize: 15)),
                 )
@@ -122,7 +123,7 @@ class _Preview_ScreenState extends State<Preview_Screen> {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
-        height: 35,
+        height: 30,
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
             borderRadius:
