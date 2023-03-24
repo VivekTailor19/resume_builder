@@ -27,7 +27,10 @@ class _Preview_ScreenState extends State<Preview_Screen> {
           actions: [
             InkWell(onTap: () async {
             await Printing.layoutPdf(onLayout: (format) =>  savePDF(rm));
-          },child: Icon(Icons.save_alt_rounded))],
+          },child: Padding(
+            padding: EdgeInsets.only(right: 10.0),
+            child: Icon(Icons.save_alt_rounded),
+          ))],
         ),
         body: SingleChildScrollView(
           child: Container(
