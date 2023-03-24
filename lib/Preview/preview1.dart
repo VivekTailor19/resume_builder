@@ -49,6 +49,12 @@ class _Preview_ScreenState extends State<Preview_Screen> {
                   Divider(color: Colors.blue.shade50, thickness: 2),
                   Row(
                     children: [
+                      // ClipOval(
+                      // child: FileImage(
+                      // File("${rm.u_path}"),
+                      //     ),
+                      //     ),
+
                       CircleAvatar(
                           radius: 75,
                           backgroundImage: FileImage(
@@ -136,42 +142,42 @@ class _Preview_ScreenState extends State<Preview_Screen> {
                   ),
                   TitleBox("References"),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          width: 180,
-                          alignment: Alignment.centerLeft,
+                          width: 160,
+                          //alignment: Alignment.centerLeft,
                           child: Text(
-                            "${rm.u_ref}    ",
+                            "${rm.u_ref}",
                             style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                                fontSize: 13, fontWeight: FontWeight.bold),
                           )),
                       Container(
-                          width: 180,
-                          alignment: Alignment.centerLeft,
+                          width: 160,
+                         // alignment: Alignment.centerLeft,
                           child: Text(
-                            "${rm.u_refjob}    ",
+                            "${rm.u_refjob}",
                             style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                                fontSize: 13, fontWeight: FontWeight.bold),
                           )),
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          width: 180,
-                          alignment: Alignment.centerLeft,
+                          width: 160,
+                          //alignment: Alignment.centerLeft,
                           child: Text(
                             "${rm.u_refcompany}",
-                            style: TextStyle(fontSize: 13),
+                            style: TextStyle(fontSize: 11),
                           )),
                       Container(
-                          width: 180,
-                          alignment: Alignment.centerLeft,
+                          width: 160,
+                          //alignment: Alignment.centerLeft,
                           child: Text(
                             "${rm.u_refemail}",
-                            style: TextStyle(fontSize: 13),
+                            style: TextStyle(fontSize: 11),
                           )),
                     ],
                   ),

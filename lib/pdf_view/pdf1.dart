@@ -37,13 +37,23 @@ Future<void> createPDF(ResumeModal rm) async {
                     // pw.Container(height: 150,width: 150,
                     //     child: pw.Image(rm.u_path),
                     //     decoration: pw.BoxDecoration(shape: pw.BoxShape.circle)),
-                    pw.Padding(
-                      padding: pw.EdgeInsets.all(10.0),
-                      child: pw.Container(
-                        height: 170,
-                        width: 150,
-                        color: PdfColors.black,
-                        child: pw.Image(pw.MemoryImage(File("${rm.u_path}").readAsBytesSync()),fit: pw.BoxFit.fill),
+                    // pw.Padding(
+                    //   padding: pw.EdgeInsets.all(10.0),
+                    //   child: pw.Container(
+                    //     height: 170,
+                    //     width: 150,
+                    //     color: PdfColors.black,
+                    //     child: pw.Image(pw.MemoryImage(File("${rm.u_path}").readAsBytesSync()),fit: pw.BoxFit.fill),
+                    //   ),
+                    // ),
+
+                    pw.ClipOval(
+                      child: pw.Image(
+                        pw.MemoryImage(File("${rm.u_path}").readAsBytesSync()),
+                        height: 200,
+                        width: 200,
+                        alignment: pw.Alignment.center,
+                        fit:  pw.BoxFit.fill,
                       ),
                     ),
 
