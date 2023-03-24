@@ -1,8 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:resume_builder/pdf_view/pdfGenerate.dart';
+import 'package:printing/printing.dart';
+
 import 'package:resume_builder/resumeDataModal.dart';
+
+import '../pdf_view/pdf1.dart';
 
 class Preview_Screen extends StatefulWidget {
   const Preview_Screen({Key? key}) : super(key: key);
@@ -21,8 +24,9 @@ class _Preview_ScreenState extends State<Preview_Screen> {
         appBar: AppBar(
           title: Text("Resume Builder"),
           centerTitle: true,
-          actions: [InkWell(onTap: () {
-            createPDF();
+          actions: [
+            InkWell(onTap: () async {
+            await Printing.layoutPdf(onLayout: (format) =>  savePDF(rm));
           },child: Icon(Icons.save_alt_rounded))],
         ),
         body: SingleChildScrollView(
