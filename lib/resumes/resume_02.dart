@@ -101,7 +101,9 @@ class _Resume_02State extends State<Resume_02> {
             ],),        //     pROJECT   NAME AND DETAILS
 
 
-            ExpansionTile(title: Text("EXPERIENCE",style: TextStyle(fontSize: 14,wordSpacing: 3)),),
+            ExpansionTile(title: Text("EXPERIENCE",style: TextStyle(fontSize: 14,wordSpacing: 3)),
+
+            ),
             //COMPANY NAME AND YEAR AND WORK
             ExpansionTile(title: Text("REFERENCE",style: TextStyle(fontSize: 14,wordSpacing: 3)),),
             // NAME EMAIL COMPANY JOBTITLE

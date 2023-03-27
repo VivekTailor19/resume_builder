@@ -1,8 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:resume_builder/pdf_view/pdfGenerate.dart';
+import 'package:printing/printing.dart';
+
 import 'package:resume_builder/resumeDataModal.dart';
+
+import '../pdf_view/pdf1.dart';
 
 class Preview_Screen extends StatefulWidget {
   const Preview_Screen({Key? key}) : super(key: key);
@@ -21,9 +24,13 @@ class _Preview_ScreenState extends State<Preview_Screen> {
         appBar: AppBar(
           title: Text("Resume Builder"),
           centerTitle: true,
-          actions: [InkWell(onTap: () {
-            createPDF();
-          },child: Icon(Icons.save_alt_rounded))],
+          actions: [
+            InkWell(onTap: () async {
+            await Printing.layoutPdf(onLayout: (format) =>  savePDF(rm));
+          },child: Padding(
+            padding: EdgeInsets.only(right: 10.0),
+            child: Icon(Icons.save_alt_rounded),
+          ))],
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -45,6 +52,12 @@ class _Preview_ScreenState extends State<Preview_Screen> {
                   Divider(color: Colors.blue.shade50, thickness: 2),
                   Row(
                     children: [
+                      // ClipOval(
+                      // child: FileImage(
+                      // File("${rm.u_path}"),
+                      //     ),
+                      //     ),
+
                       CircleAvatar(
                           radius: 75,
                           backgroundImage: FileImage(
@@ -132,42 +145,42 @@ class _Preview_ScreenState extends State<Preview_Screen> {
                   ),
                   TitleBox("References"),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          width: 180,
-                          alignment: Alignment.centerLeft,
+                          width: 160,
+                          //alignment: Alignment.centerLeft,
                           child: Text(
-                            "${rm.u_ref}    ",
+                            "${rm.u_ref}",
                             style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                                fontSize: 13, fontWeight: FontWeight.bold),
                           )),
                       Container(
-                          width: 180,
-                          alignment: Alignment.centerLeft,
+                          width: 160,
+                         // alignment: Alignment.centerLeft,
                           child: Text(
-                            "${rm.u_refjob}    ",
+                            "${rm.u_refjob}",
                             style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
+                                fontSize: 13, fontWeight: FontWeight.bold),
                           )),
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                          width: 180,
-                          alignment: Alignment.centerLeft,
+                          width: 160,
+                          //alignment: Alignment.centerLeft,
                           child: Text(
                             "${rm.u_refcompany}",
-                            style: TextStyle(fontSize: 13),
+                            style: TextStyle(fontSize: 11),
                           )),
                       Container(
-                          width: 180,
-                          alignment: Alignment.centerLeft,
+                          width: 160,
+                          //alignment: Alignment.centerLeft,
                           child: Text(
                             "${rm.u_refemail}",
-                            style: TextStyle(fontSize: 13),
+                            style: TextStyle(fontSize: 11),
                           )),
                     ],
                   ),

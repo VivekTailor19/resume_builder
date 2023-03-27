@@ -588,7 +588,7 @@ class _New_ResumeState extends State<New_Resume> {
                 borderSide: BorderSide(color: Colors.black12,
                     width: 2)),
             label: Text("$labelname"),
-            labelStyle: TextStyle(color: Colors.lightBlueAccent.shade100,fontSize: 18),
+            labelStyle: TextStyle(color: Colors.lightBlueAccent.shade100,fontSize: 13),
 
           )),
     );
