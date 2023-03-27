@@ -82,7 +82,7 @@ class _Preview_02State extends State<Preview_02> {
 
 
 
-            Container(width: 220,child: Padding(
+            Container(width: 180,child: Padding(
               padding: EdgeInsets.only(left: 15.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

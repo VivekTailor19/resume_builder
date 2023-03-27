@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'resumeDataModal.dart';
+import '../resumeDataModal.dart';
 
 class New_Resume extends StatefulWidget {
   const New_Resume({Key? key}) : super(key: key);
@@ -26,7 +26,9 @@ class _New_ResumeState extends State<New_Resume> {
   TextEditingController u_contact = TextEditingController();
 
   TextEditingController u_project = TextEditingController();
+
   TextEditingController u_project_info = TextEditingController();
+
 
   TextEditingController u_training= TextEditingController();
   TextEditingController u_training_year= TextEditingController();

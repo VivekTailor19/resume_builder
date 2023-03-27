@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:resume_builder/Preview/preview_screen2.dart';
 import 'package:resume_builder/homescreen.dart';
-import 'package:resume_builder/new_resume.dart';
+import 'package:resume_builder/resumes/new_resume.dart';
 import 'package:resume_builder/Preview/preview1.dart';
-import 'package:resume_builder/old_resume.dart';
+
 import 'package:resume_builder/practice.dart';
 
 void main() {
@@ -15,7 +15,8 @@ void main() {
       "new_resume" : (context) => New_Resume(),
       "preview" : (context) => Preview_Screen(),
       "preview_02" : (context) => Preview_02(),
-      "/" : (context) => MyTabbedPage(),
+      "/" : (context) => Preview_02(),
+
 
 
     },
