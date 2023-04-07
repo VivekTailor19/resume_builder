@@ -145,7 +145,7 @@ class _New_ResumeState extends State<New_Resume> {
                           child: Container(color: Colors.white,
                             child:ExpansionTile(
                               leading: Icon(Icons.public,size: 30,color: Colors.lightBlue),
-                              title: Text("Nationality",style: TextStyle(fontSize: 30 )),
+                              title: Text("Nationality",style: TextStyle(fontSize: 25 )),
                               trailing: Text("$country",style: TextStyle(fontSize: 20)),
                               children: [
                                 NationalityRadio("Indian"),
@@ -165,8 +165,8 @@ class _New_ResumeState extends State<New_Resume> {
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: ExpansionTile(
                       leading: Icon(Icons.local_library_rounded, size: 30, color: Colors.lightBlue),
-                      title: Text("Education", style: TextStyle(fontSize: 30,),),
-                      trailing: Text("$eduSel in $stream"),
+                      title: Text("Education", style: TextStyle(fontSize: 25,),),
+                      trailing: Text("$eduSel in $stream",textAlign: TextAlign.justify,softWrap: true,style: TextStyle(fontSize: 10),),
                       children: [
                         DropdownButton(
                           isExpanded: true,

@@ -10,12 +10,11 @@ void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     routes: {
-      //"/"       : (context) => HomeScreen(),
-     //"old_resume" : (context) => Old_Resume(),
+      "/"       : (context) => HomeScreen(),
       "new_resume" : (context) => New_Resume(),
       "preview" : (context) => Preview_Screen(),
       "preview_02" : (context) => Preview_02(),
-      "/" : (context) => Preview_02(),
+      //"/" : (context) => Preview_02(),
 
 
 
